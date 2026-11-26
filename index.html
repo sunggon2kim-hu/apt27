@@ -211,6 +211,80 @@
     .t-list td.ln::before, .t-list td.ln.empty-cell, .t-list td.bd.empty-cell { display: none; }
     .tablewrap tbody tr td[colspan] { width: 100%; }
   }
+
+  /* Phone: smaller type and fewer secondary details */
+  @media (max-width: 640px) {
+    body { font-size: 15px; }
+    .page { gap: 32px; padding-block: 12px 48px; }
+    h1 { font-size: 23px; }
+    h2 { font-size: 19px; }
+    .eyebrow, .now-eyebrow { font-size: 11px; }
+    .hero { padding: 18px; gap: 14px; }
+    .hero-text { gap: 10px; }
+    .hero-art { max-width: 190px; }
+    .mark { width: 28px; height: 3px; }
+    .lede { font-size: 15px; line-height: 1.65; }
+    .note { font-size: 11px; }
+    .hint { display: none; }
+
+    .now { padding: 16px; gap: 12px; border-radius: 14px; box-shadow: 0 10px 24px rgba(165, 0, 52, .18); }
+    .now h2 { font-size: 19px; }
+    .now-month { gap: 6px; }
+    .now-month .m { font-size: 19px; }
+    .nbtn { width: 34px; height: 34px; font-size: 13px; }
+    .now-sum { font-size: 13px; gap: 4px 14px; }
+    .now-sum b { font-size: 17px; }
+    .now-sum .today { font-size: 11px; padding: 2px 8px; }
+    .now-grid { gap: 8px; }
+    .now-col { padding: 10px 12px; gap: 8px; border-radius: 10px; }
+    .now-col h3 { font-size: 15px; }
+    .now-col h3 span { font-size: 12px; }
+    .now-empty { font-size: 12px; padding: 0; }
+    .apt { padding: 9px 11px; gap: 3px; border-radius: 8px; }
+    .apt .nm { font-size: 14px; }
+    .apt .where { font-size: 12px; }
+    .apt .u { font-size: 16px; }
+    .apt .u small { font-size: 11px; }
+    .apt .meta.mb, .apt .meta.ma { display: none; }
+    .apt a { font-size: 12px; }
+
+    .period { padding-block: 8px; gap: 4px; }
+    .plabel { font-size: 11px; }
+    .pbtn { font-size: 13px; padding: 4px 10px; }
+    .kpis { margin-top: -12px; row-gap: 14px; }
+    .kpi, .kpi + .kpi { padding-top: 12px; gap: 4px; }
+    .label { font-size: 12px; }
+    .label svg { width: 13px; height: 13px; }
+    .big { font-size: 24px; }
+    .unit { font-size: 12px; }
+    .delta { font-size: 12px; }
+    .sub { font-size: 11px; }
+    .section { gap: 14px; }
+    .legend { font-size: 12px; gap: 12px; }
+    .sw { width: 10px; height: 10px; }
+    .sido, .sido + .sido { padding: 12px 0 6px; gap: 4px; }
+    .sido .name { font-size: 15px; }
+    .sido .name svg { width: 15px; height: 15px; }
+    .pair { font-size: 12px; gap: 4px 8px; }
+    .pair .track { height: 7px; }
+    .chart { min-height: 240px; }
+    .chart .tick text { font-size: 11px; }
+    .carry { padding: 14px 16px; gap: 6px; }
+    .carry ul { font-size: 14px; }
+    .carry li .m { font-size: 12px; display: block; margin: 2px 0 0; }
+    .ybtn { font-size: 13px; padding: 5px 12px; }
+    select { font-size: 13px; padding: 6px 10px; }
+    .count { font-size: 12px; }
+    .tablewrap tbody tr { padding: 10px 2px; gap: 4px 12px; }
+    .tablewrap td { font-size: 13px; }
+    .tablewrap td[data-label]::before { font-size: 10px; }
+    .tablewrap td.nm { font-size: 15px; }
+    .t-list td.un { font-size: 16px; }
+    .t-list td.bd, .t-list td.ad { font-size: 12px; }
+    .t-list td.ad::before, .t-list td.bd::before { display: none; }
+    .pill { font-size: 11px; padding: 1px 7px; }
+    footer { font-size: 11px; }
+  }
   @media (prefers-reduced-motion: reduce) { .pbtn, .pair .track i { transition: none; } }
 </style>
 </head>
@@ -567,7 +641,7 @@
       const a = f(D27), b = f(D26);
       return { i, label: i + '월', u27: d3.sum(a, (r) => r.units), u26: d3.sum(b, (r) => r.units), c27: a.length, c26: b.length, on: inPeriod('2027-' + String(i).padStart(2, '0'), p) };
     });
-    const W = el.clientWidth || 700, H = 340, narrow = W < 600;
+    const W = el.clientWidth || 700, H = (el.clientWidth || 700) < 480 ? 240 : 340, narrow = W < 600;
     const m = { t: 22, r: 4, b: 26, l: 46 };
     const x = d3.scaleBand().domain(data.map((r) => r.label)).range([m.l, W - m.r]).padding(narrow ? 0.12 : 0.22);
     const xi = d3.scaleBand().domain(['26', '27']).range([0, x.bandwidth()]).padding(0.08);
@@ -676,8 +750,8 @@
         const w = document.createElement('span'); w.className = 'where'; w.textContent = `${r.sido} ${r.sigungu} · ${r.type}`; row.appendChild(w);
         const u = document.createElement('span'); u.className = 'u'; u.textContent = fmt(r.units); const sm = document.createElement('small'); sm.textContent = '세대'; u.appendChild(sm); row.appendChild(u);
         c.appendChild(row);
-        if (r.builder) { const mt = document.createElement('div'); mt.className = 'meta'; mt.textContent = `시공 ${r.builder}`; c.appendChild(mt); }
-        const ad = document.createElement('div'); ad.className = 'meta'; ad.textContent = r.address; c.appendChild(ad);
+        if (r.builder) { const mt = document.createElement('div'); mt.className = 'meta mb'; mt.textContent = `시공 ${r.builder}`; c.appendChild(mt); }
+        const ad = document.createElement('div'); ad.className = 'meta ma'; ad.textContent = r.address; c.appendChild(ad);
         if (/^https:\/\//.test(r.link)) { const a = document.createElement('a'); a.href = r.link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = '단지정보 보기 ↗'; c.appendChild(a); }
         col.appendChild(c);
       });
