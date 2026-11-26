@@ -168,6 +168,49 @@
     .sido, .sido + .sido { padding: 16px 0 8px; border-left: 0; border-top: 1px solid var(--line); }
     .pcompare { padding-left: 0; }
   }
+
+  /* Phone layout: compact sticky period bar, tables become stacked cards */
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .page { gap: 44px; padding-block: 16px 56px; }
+    .hero { border-radius: 16px; gap: 20px; }
+    .lede { font-size: 17px; }
+    .now { border-radius: 16px; gap: 18px; }
+    .now-head { align-items: flex-start; }
+    .now-month { width: 100%; justify-content: space-between; }
+    .now-month .m { min-width: 0; font-size: 26px; }
+    .now-sum b { font-size: 21px; }
+    .period { padding-block: 10px; gap: 6px; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: 0; }
+    .prow { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-right: 16px; }
+    .prow::-webkit-scrollbar { display: none; }
+    .plabel { width: auto; margin-right: 4px; font-size: 13px; }
+    .pbtn { font-size: 15px; padding: 6px 12px; flex: none; }
+    .pcompare { display: none; }
+    .kpis { margin-top: -20px; }
+    .big { font-size: 30px; }
+    .head { align-items: flex-start; }
+    .controls { width: 100%; }
+    .controls select { flex: 1; }
+    .chart { min-height: 280px; }
+    .tablewrap { overflow: visible; border-top: 2px solid var(--fg); }
+    .tablewrap table, .tablewrap tbody { display: block; width: 100%; }
+    .tablewrap thead { display: none; }
+    .tablewrap tbody tr { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding: 14px 4px; border-bottom: 1px solid var(--line); }
+    .tablewrap tbody tr:nth-child(even) { background: none; }
+    .tablewrap td { display: block; padding: 0; border: 0; min-width: 0; text-align: left; font-size: 15px; }
+    .tablewrap td:first-child { padding-left: 0; }
+    .tablewrap td[data-label]::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 2px; }
+    .tablewrap td.nm { width: 100%; min-width: 0; font-size: 17px; }
+    .t-dist td.bars { width: 100%; min-width: 0; }
+    .t-dist td.r { flex: 1 1 0; }
+    .t-list td.mo, .t-list td.sd, .t-list td.sg, .t-list td.ty { flex: none; }
+    .t-list td.un { flex: none; font-size: 20px; font-weight: 700; margin-left: auto; text-align: right; }
+    .t-list td.nm { order: -1; }
+    .t-list td.bd, .t-list td.ad { width: 100%; min-width: 0; font-size: 14px; }
+    .t-list td.ln { width: 100%; }
+    .t-list td.ln::before, .t-list td.ln.empty-cell, .t-list td.bd.empty-cell { display: none; }
+    .tablewrap tbody tr td[colspan] { width: 100%; }
+  }
   @media (prefers-reduced-motion: reduce) { .pbtn, .pair .track i { transition: none; } }
 </style>
 </head>
@@ -279,7 +322,7 @@
       </div>
     </div>
     <div class="tablewrap">
-      <table>
+      <table class="t-dist">
         <thead><tr><th>시군구</th><th>비교</th><th class="r">2027년</th><th class="r">2026년</th><th class="r">증감</th><th class="r">단지(27/26)</th></tr></thead>
         <tbody id="district-rows"></tbody>
       </table>
@@ -309,7 +352,7 @@
       </div>
     </div>
     <div class="tablewrap">
-      <table>
+      <table class="t-list">
         <thead><tr><th>입주월</th><th>시도</th><th>시군구</th><th>아파트명</th><th>유형</th><th class="r">세대수</th><th>시공사</th><th>주소</th><th>정보</th></tr></thead>
         <tbody id="list-rows"></tbody>
       </table>
@@ -537,7 +580,7 @@
     g.append('rect').attr('x', xi('27')).attr('width', xi.bandwidth()).attr('y', (r) => y(r.u27)).attr('height', (r) => y(0) - y(r.u27)).attr('rx', 1.5).style('fill', 'var(--red-hi)');
     const short = (v) => v >= 1000 ? (Math.round(v / 100) / 10) + 'k' : String(v);
     if (!narrow) g.append('text').attr('class', 'val').attr('text-anchor', 'middle').attr('x', xi('27') + xi.bandwidth() / 2).attr('y', (r) => y(r.u27) - 5).text((r) => r.u27 ? short(r.u27) : '');
-    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickSize(0).tickPadding(8)).call((gg) => gg.select('.domain').remove());
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickSize(0).tickPadding(8).tickFormat((d) => narrow ? d.replace('월', '') : d)).call((gg) => gg.select('.domain').remove());
     const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; el.appendChild(tip);
     svg.append('g').selectAll('rect').data(data).join('rect')
       .attr('x', (r) => x(r.label) - x.step() * x.paddingInner() / 2).attr('width', x.step())
@@ -568,15 +611,15 @@
     const max = d3.max(rows, (r) => Math.max(r.u27, r.u26)) || 1;
     rows.forEach((r) => {
       const tr = tb.insertRow();
-      const c0 = tr.insertCell(); c0.textContent = r.key;
+      const c0 = tr.insertCell(); c0.className = 'nm'; c0.textContent = r.key;
       if (r.u27 && !r.u26) { const sp = document.createElement('span'); sp.className = 'pill new'; sp.textContent = '신규'; sp.style.marginLeft = '6px'; c0.appendChild(sp); }
       const cb = tr.insertCell(); cb.className = 'bars';
       [['u27', 'var(--red-hi)'], ['u26', 'var(--prev)']].forEach(([k, c]) => { const t = document.createElement('div'); t.className = 'track'; const i = document.createElement('i'); i.style.width = (r[k] / max * 100) + '%'; i.style.background = c; t.appendChild(i); cb.appendChild(t); });
-      const c1 = tr.insertCell(); c1.className = 'r'; c1.textContent = fmt(r.u27); if (r.u27) c1.style.fontWeight = '500';
-      const c2 = tr.insertCell(); c2.className = 'r'; c2.style.color = 'var(--muted)'; c2.textContent = fmt(r.u26);
-      const d = r.u27 - r.u26; const c3 = tr.insertCell(); c3.className = 'r ' + (d > 0 ? 'up' : d < 0 ? 'down' : 'flat');
+      const c1 = tr.insertCell(); c1.className = 'r'; c1.dataset.label = '2027년'; c1.textContent = fmt(r.u27); if (r.u27) c1.style.fontWeight = '700';
+      const c2 = tr.insertCell(); c2.className = 'r'; c2.dataset.label = '2026년'; c2.style.color = 'var(--muted)'; c2.textContent = fmt(r.u26);
+      const d = r.u27 - r.u26; const c3 = tr.insertCell(); c3.className = 'r ' + (d > 0 ? 'up' : d < 0 ? 'down' : 'flat'); c3.dataset.label = '증감';
       c3.textContent = d === 0 ? '0' : `${d > 0 ? '▲' : '▼'} ${fmt(Math.abs(d))}`;
-      const c4 = tr.insertCell(); c4.className = 'r'; c4.style.color = 'var(--muted)'; c4.textContent = `${r.c27} / ${r.c26}`;
+      const c4 = tr.insertCell(); c4.className = 'r'; c4.dataset.label = '단지'; c4.style.color = 'var(--muted)'; c4.textContent = `${r.c27} / ${r.c26}`;
     });
   }
 
@@ -589,14 +632,14 @@
     if (!rows.length) { const tr = tb.insertRow(); const td = tr.insertCell(); td.colSpan = 9; td.textContent = '선택한 조건에 해당하는 단지가 없습니다.'; return; }
     rows.forEach((r) => {
       const tr = tb.insertRow();
-      const cell = (t, c) => { const td = tr.insertCell(); if (c) td.className = c; td.textContent = t; return td; };
-      cell(`${mm(r.month)}월`); cell(r.sido); cell(r.sigungu); cell(r.name, 'nm');
-      const t = cell(''); const sp = document.createElement('span'); sp.className = 'pill' + (isRent(r) ? ' rent' : ''); sp.textContent = r.type; t.appendChild(sp);
-      const u = cell(fmt(r.units), 'r'); if (r.units >= 1000) u.classList.add('bigflag');
-      cell(r.builder || '—', 'bd');
-      cell(r.address, 'ad');
-      const l = cell('');
-      if (/^https:\/\//.test(r.link)) { const a = document.createElement('a'); a.href = r.link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = '단지정보 ↗'; l.appendChild(a); } else l.textContent = '—';
+      const cell = (t, c, label) => { const td = tr.insertCell(); if (c) td.className = c; if (label) td.dataset.label = label; td.textContent = t; return td; };
+      cell(`${mm(r.month)}월`, 'mo', '입주월'); cell(r.sido, 'sd', '시도'); cell(r.sigungu, 'sg', '시군구'); cell(r.name, 'nm');
+      const t = cell('', 'ty', '유형'); const sp = document.createElement('span'); sp.className = 'pill' + (isRent(r) ? ' rent' : ''); sp.textContent = r.type; t.appendChild(sp);
+      const u = cell(fmt(r.units), 'r un', '세대수'); if (r.units >= 1000) u.classList.add('bigflag');
+      if (r.builder) cell(r.builder, 'bd', '시공사'); else cell('—', 'bd empty-cell', '시공사');
+      cell(r.address, 'ad', '주소');
+      const l = cell('', 'ln', '정보');
+      if (/^https:\/\//.test(r.link)) { const a = document.createElement('a'); a.href = r.link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = '단지정보 ↗'; l.appendChild(a); } else { l.textContent = '—'; l.classList.add('empty-cell'); }
     });
   }
 
