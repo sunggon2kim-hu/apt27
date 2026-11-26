@@ -3,45 +3,52 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="2027년 광주·전북·전남 신규아파트 입주 예정 현황">
-<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>호남권 2027 입주현황</title>
+<title>호남권 입주현황 2027</title>
+<meta name="description" content="호남권(광주·전북·전남) 2027년 신규아파트 입주 예정 현황과 2026년 대비 변화 — 아파트 판촉 현장관리자용">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500&display=swap">
 <style>
-  /* Layout: one centred column, hairlines instead of boxes, LG red only for what is selected or most important */
+  /* Layout: one centred column, hairlines instead of boxes; LG red = 2027 / selected, warm gray = 2026 */
   :root {
     --bg: #FFFFFF; --fg: #1A1A1D; --muted: #6E6D75; --line: #E7E5E8; --panel: #F7F6F8;
-    --red: #A50034; --red-hi: #A50034; --gray: #9A9AA0; --rose: #E3A1B4; --tip: #FFFFFF; --grid: #E2E0E4;
+    --red: #A50034; --red-hi: #A50034; --prev: #BDBCC3; --gray: #9A9AA0; --rose: #E3A1B4;
+    --up: #1E7B53; --down: #B4530F; --tip: #FFFFFF; --grid: #E2E0E4;
     --serif: "Noto Serif KR", "Apple SD Gothic Neo", serif;
     --sans: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --bg: #131315; --fg: #F2F1F4; --muted: #A4A3AB; --line: #2B2A30; --panel: #1C1B20; --red-hi: #E2336B; --gray: #8C8C93; --rose: #D98AA2; --tip: #222126; --grid: #2E2D33; color-scheme: dark; }
+    :root:not([data-theme="light"]) { --bg: #131315; --fg: #F2F1F4; --muted: #A4A3AB; --line: #2B2A30; --panel: #1C1B20; --red-hi: #E2336B; --prev: #55545C; --gray: #8C8C93; --rose: #D98AA2; --up: #4CC08D; --down: #F0954E; --tip: #222126; --grid: #2E2D33; color-scheme: dark; }
   }
-  :root[data-theme="dark"] { --bg: #131315; --fg: #F2F1F4; --muted: #A4A3AB; --line: #2B2A30; --panel: #1C1B20; --red-hi: #E2336B; --gray: #8C8C93; --rose: #D98AA2; --tip: #222126; --grid: #2E2D33; color-scheme: dark; }
+  :root[data-theme="dark"] { --bg: #131315; --fg: #F2F1F4; --muted: #A4A3AB; --line: #2B2A30; --panel: #1C1B20; --red-hi: #E2336B; --prev: #55545C; --gray: #8C8C93; --rose: #D98AA2; --up: #4CC08D; --down: #F0954E; --tip: #222126; --grid: #2E2D33; color-scheme: dark; }
 
-  body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; -webkit-font-smoothing: antialiased; }
-  .page { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 48px 72px; display: flex; flex-direction: column; gap: 56px; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; -webkit-font-smoothing: antialiased; }
+  [hidden] { display: none !important; }
+  .page { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 48px 72px; display: flex; flex-direction: column; gap: 56px; }
   h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 4.4vw, 46px); line-height: 1.18; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
   h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(20px, 2.4vw, 26px); margin: 0; text-wrap: balance; }
   .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red-hi); }
   .eyebrow.muted { color: var(--muted); }
+  .num { font-variant-numeric: tabular-nums; }
+  .up { color: var(--up); } .down { color: var(--down); } .flat { color: var(--muted); }
 
   .hero { display: flex; flex-direction: column; gap: 18px; }
   .mark { width: 28px; height: 3px; background: var(--red); }
-  .lede { margin: 0; color: var(--muted); max-width: 62ch; font-size: 16px; line-height: 1.8; }
+  .lede { margin: 0; color: var(--muted); max-width: 66ch; font-size: 16px; line-height: 1.8; }
   .lede b { color: var(--fg); font-weight: 500; font-variant-numeric: tabular-nums; }
   .lede b.hl { color: var(--red-hi); }
+  .lede b.up { color: var(--up); } .lede b.down { color: var(--down); }
   .note { font-size: 12px; color: var(--muted); margin: 0; }
 
-  .period { display: flex; flex-direction: column; gap: 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 14px; }
+  .period { display: flex; flex-direction: column; gap: 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 14px; position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 5; }
   .prow { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 4px; }
   .plabel { font-size: 11px; letter-spacing: 0.14em; color: var(--muted); width: 4.5em; flex: none; }
   .pbtn { font: inherit; font-size: 14px; font-variant-numeric: tabular-nums; padding: 8px 10px; border: 0; background: none; color: var(--muted); cursor: pointer; box-shadow: inset 0 -2px 0 transparent; transition: color .15s, box-shadow .15s; }
   .pbtn:hover { color: var(--fg); }
-  .pbtn:focus-visible { outline: 2px solid var(--red-hi); outline-offset: 2px; }
+  .pbtn:focus-visible, .ybtn:focus-visible, select:focus-visible { outline: 2px solid var(--red-hi); outline-offset: 2px; }
   .pbtn[aria-pressed="true"] { color: var(--red-hi); font-weight: 500; box-shadow: inset 0 -2px 0 var(--red-hi); }
+  .pcompare { font-size: 12px; color: var(--muted); padding-left: 4.5em; margin-top: 2px; }
 
   .kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: -24px; }
   .kpi { padding: 4px 20px 4px 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
@@ -50,6 +57,7 @@
   .big { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); font-variant-numeric: tabular-nums; line-height: 1.1; letter-spacing: -0.01em; }
   .kpi.main .big { color: var(--red-hi); }
   .unit { font-family: var(--sans); font-size: 14px; color: var(--muted); margin-left: 4px; }
+  .delta { font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; }
   .sub { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
 
   .section { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
@@ -58,41 +66,58 @@
   .hint { font-size: 12px; color: var(--muted); }
   .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .sw { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-  .c0 { background: var(--red-hi); } .c1 { background: var(--gray); } .c2 { background: var(--rose); }
+  .sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .sw.y27 { background: var(--red-hi); } .sw.y26 { background: var(--prev); }
 
   .split { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
   .sido { padding: 20px 24px 4px 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
   .sido + .sido { padding-left: 24px; border-left: 1px solid var(--line); }
-  .sido .name { font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
-  .bar { height: 2px; background: var(--line); margin-top: 6px; overflow: hidden; }
-  .bar > i { display: block; height: 100%; transition: width .4s ease-out; }
+  .sido .name { font-size: 14px; font-weight: 500; }
+  .pair { display: grid; grid-template-columns: 3.2em 1fr 4.6em; align-items: center; gap: 4px 8px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 4px; }
+  .pair .track { height: 6px; background: var(--panel); border-radius: 3px; overflow: hidden; }
+  .pair .track i { display: block; height: 100%; border-radius: 3px; transition: width .4s ease-out; }
+  .pair .r { text-align: right; }
 
-  .charts { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 56px; }
-  .chart { position: relative; min-height: 280px; width: 100%; }
+  .chart { position: relative; min-height: 300px; width: 100%; }
   .chart svg { display: block; width: 100%; overflow: visible; }
-  .chart .tick text, .chart .axl { fill: var(--muted); font-size: 12px; font-family: var(--sans); }
+  .chart .tick text { fill: var(--muted); font-size: 12px; font-family: var(--sans); }
   .chart .domain { stroke: none; }
   .chart .tick line { stroke: var(--grid); stroke-dasharray: 2 3; }
-  .val { fill: var(--fg); font-size: 12px; font-variant-numeric: tabular-nums; font-family: var(--sans); }
-  .empty { font-size: 13px; color: var(--muted); padding: 16px 0; }
+  .val { fill: var(--fg); font-size: 11px; font-variant-numeric: tabular-nums; font-family: var(--sans); }
   .tip { position: absolute; pointer-events: none; background: var(--tip); border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(0,0,0,.12); border-radius: 6px; padding: 10px 12px; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; z-index: 2; }
   .tip strong { display: block; margin-bottom: 4px; font-weight: 500; }
   .tip .m { color: var(--muted); }
 
-  select { font: inherit; font-size: 13px; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; }
   .tablewrap { overflow-x: auto; border-top: 1px solid var(--fg); }
   table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
-  th { text-align: left; font-weight: 400; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
-  td { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { text-align: left; font-weight: 400; font-size: 11px; letter-spacing: 0.06em; color: var(--muted); padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
   tbody tr:hover { background: var(--panel); }
   .r { text-align: right; }
-  td.nm { min-width: 200px; font-weight: 500; }
-  td.ad { color: var(--muted); min-width: 220px; font-size: 12px; }
+  td.nm { min-width: 190px; font-weight: 500; }
+  td.ad { color: var(--muted); min-width: 200px; font-size: 12px; }
+  td.bd { color: var(--muted); font-size: 12px; min-width: 120px; }
+  td.bars { min-width: 140px; width: 32%; }
+  td.bars .track { height: 6px; background: var(--panel); border-radius: 3px; overflow: hidden; margin: 3px 0; }
+  td.bars .track i { display: block; height: 100%; border-radius: 3px; }
   .pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--panel); color: var(--muted); white-space: nowrap; }
   .pill.rent { background: none; color: var(--gray); box-shadow: inset 0 0 0 1px var(--gray); }
+  .pill.new { background: none; color: var(--red-hi); box-shadow: inset 0 0 0 1px var(--red-hi); }
   .bigflag { color: var(--red-hi); font-weight: 500; }
-  footer { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 20px; }
+  td a { color: var(--red-hi); text-decoration: none; white-space: nowrap; }
+  td a:hover { text-decoration: underline; }
+
+  .carry { border-left: 3px solid var(--red); padding: 4px 0 4px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .carry ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+  .carry li .m { color: var(--muted); font-size: 12px; margin-left: 6px; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+  .ytabs { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
+  .ybtn { font: inherit; font-size: 13px; border: 0; background: none; color: var(--muted); padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+  .ybtn[aria-pressed="true"] { background: var(--red); color: #FFFFFF; }
+  select { font: inherit; font-size: 13px; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; }
+  .count { font-size: 12px; color: var(--muted); }
+  footer { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 20px; line-height: 1.8; }
 
   @media (max-width: 900px) {
     .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; }
@@ -100,86 +125,116 @@
     .kpi.main { grid-column: 1 / -1; }
     .split { grid-template-columns: minmax(0, 1fr); border-top: 0; }
     .sido, .sido + .sido { padding: 16px 0 8px; border-left: 0; border-top: 1px solid var(--line); }
-    .charts { grid-template-columns: minmax(0, 1fr); }
+    .pcompare { padding-left: 0; }
   }
-  @media (prefers-reduced-motion: reduce) { .pbtn, .bar > i { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .pbtn, .pair .track i { transition: none; } }
 </style>
-
 </head>
 <body>
 <div class="page">
   <header class="hero">
     <div class="mark"></div>
-    <div class="eyebrow">Honam · 2027 입주 예정</div>
+    <div class="eyebrow">Honam · 현장관리자용 입주 현황</div>
     <h1>'27년 호남권 신규아파트 입주현황</h1>
-    <p class="lede"><b class="hl" id="t-period">2027년 전체</b>에는 광주·전북·전남에 <b id="t-count">33</b>개 단지, <b id="t-units">17,063</b>세대가 입주할 예정입니다. 입주가 가장 몰리는 달은 <b id="t-peak">8월</b>로 <b id="t-peakunits">2,772</b>세대입니다.</p>
-    <p class="note">한국부동산원 입주예정물량(2025-12-31 기준, 30세대 이상 공동주택) 정리본. 실제 입주 시점과 세대수는 공사 일정에 따라 바뀔 수 있습니다.</p>
+    <p class="lede"><b class="hl" id="t-period">2027년 전체</b>에는 광주·전북·전남에 <b id="t-count">—</b>개 단지, <b id="t-units">—</b>세대가 입주합니다. 전년 같은 기간(<b id="t-prev">—</b>세대)보다 <b id="t-delta">—</b>. 가장 많이 몰리는 달은 <b id="t-peak">—</b>(<b id="t-peakunits">—</b>세대)이고, 입주 세대가 가장 많은 곳은 <b id="t-top">—</b>입니다.</p>
+    <p class="note">2027년: 한국부동산원 입주예정물량(2025-12-31 기준) + 담당 확인사항 · 2026년: 26년 신규아파트 입주DB(현장확인용) 호남권 · 실제 입주 시점과 세대수는 공사 일정에 따라 바뀔 수 있습니다.</p>
   </header>
 
   <nav class="period" aria-label="기간 선택">
     <div class="prow" role="group" aria-label="분기">
       <span class="plabel">분기</span>
-      <button type="button" class="pbtn" id="p-all" data-period="" aria-pressed="true">전체</button>
-      <button type="button" class="pbtn" id="p-q1" data-period="Q1" aria-pressed="false">1분기</button>
-      <button type="button" class="pbtn" id="p-q2" data-period="Q2" aria-pressed="false">2분기</button>
-      <button type="button" class="pbtn" id="p-q3" data-period="Q3" aria-pressed="false">3분기</button>
-      <button type="button" class="pbtn" id="p-q4" data-period="Q4" aria-pressed="false">4분기</button>
+      <button type="button" class="pbtn" data-period="" aria-pressed="true">전체</button>
+      <button type="button" class="pbtn" data-period="Q1" aria-pressed="false">1분기</button>
+      <button type="button" class="pbtn" data-period="Q2" aria-pressed="false">2분기</button>
+      <button type="button" class="pbtn" data-period="Q3" aria-pressed="false">3분기</button>
+      <button type="button" class="pbtn" data-period="Q4" aria-pressed="false">4분기</button>
     </div>
-    <div class="prow" role="group" aria-label="월" id="month-row">
-      <span class="plabel">월</span>
-    </div>
+    <div class="prow" role="group" aria-label="월" id="month-row"><span class="plabel">월</span></div>
+    <div class="pcompare" id="pcompare">2027년 1~12월과 2026년 1~12월을 비교합니다.</div>
   </nav>
 
-  <section class="kpis">
-    <div class="kpi main"><div class="label">입주 세대</div><div class="big"><span id="k-units">17,063</span><span class="unit">세대</span></div><div class="sub" id="k-period">2027년 1~12월</div></div>
-    <div class="kpi"><div class="label">입주 단지</div><div class="big"><span id="k-count">33</span><span class="unit">개</span></div><div class="sub">블록·주택유형별로 구분</div></div>
-    <div class="kpi"><div class="label">단지당 평균</div><div class="big"><span id="k-avg">517</span><span class="unit">세대</span></div><div class="sub">입주 세대 ÷ 단지 수</div></div>
-    <div class="kpi"><div class="label">1,000세대 이상 대단지</div><div class="big"><span id="k-big">2</span><span class="unit">개</span></div><div class="sub">한 단지 세대수 1,000 이상</div></div>
-    <div class="kpi"><div class="label">분양·조합 세대 비중</div><div class="big"><span id="k-sale">95.7</span><span class="unit">%</span></div><div class="sub">나머지는 민간·공공임대</div></div>
+  <section class="kpis" aria-label="주요 지표">
+    <div class="kpi main"><div class="label">입주 세대</div><div class="big"><span id="k-units">—</span><span class="unit">세대</span></div><div class="delta" id="d-units">—</div><div class="sub" id="p-units">—</div></div>
+    <div class="kpi"><div class="label">입주 단지</div><div class="big"><span id="k-count">—</span><span class="unit">개</span></div><div class="delta" id="d-count">—</div><div class="sub" id="p-count">—</div></div>
+    <div class="kpi"><div class="label">단지당 평균</div><div class="big"><span id="k-avg">—</span><span class="unit">세대</span></div><div class="delta" id="d-avg">—</div><div class="sub" id="p-avg">—</div></div>
+    <div class="kpi"><div class="label">1,000세대 이상 대단지</div><div class="big"><span id="k-big">—</span><span class="unit">개</span></div><div class="delta" id="d-big">—</div><div class="sub" id="p-big">—</div></div>
+    <div class="kpi"><div class="label">임대 세대</div><div class="big"><span id="k-rent">—</span><span class="unit">세대</span></div><div class="delta" id="d-rent">—</div><div class="sub" id="p-rent">—</div></div>
   </section>
 
-  <section class="section">
-    <div class="head"><div><div class="eyebrow muted">By Province</div><h2>시도별 입주 세대</h2></div></div>
+  <section class="section" id="sido-section">
+    <div class="head">
+      <div><div class="eyebrow muted">By Province</div><h2>시도별 입주 세대 · 전년 대비</h2></div>
+      <div class="legend"><span><i class="sw y27"></i>2027년</span><span><i class="sw y26"></i>2026년</span></div>
+    </div>
     <div class="split" id="sido-split"></div>
   </section>
 
-  <div class="charts">
-    <section class="section">
-      <div class="head">
-        <div><div class="eyebrow muted">Monthly</div><h2>입주월별 세대수</h2></div>
-        <div class="legend"><span><i class="sw c0"></i>광주</span><span><i class="sw c1"></i>전북</span><span><i class="sw c2"></i>전남</span></div>
-      </div>
-      <div class="chart" id="monthly"></div>
-      <div class="hint">막대를 누르면 그 달로 바뀝니다. 선택한 기간 밖의 달은 흐리게 보입니다.</div>
-    </section>
-    <section class="section">
-      <div class="head"><div><div class="eyebrow muted">By District</div><h2>시군구별 입주 세대</h2></div></div>
-      <div class="chart" id="sigungu"></div>
-    </section>
-  </div>
-
-  <section class="section">
+  <section class="section" id="monthly-section">
     <div class="head">
-      <div><div class="eyebrow muted">Complexes</div><h2>단지 리스트</h2></div>
-      <select id="sido-filter" aria-label="시도 선택">
-        <option value="">전체 시도</option><option value="광주">광주</option><option value="전북">전북</option><option value="전남">전남</option>
-      </select>
+      <div><div class="eyebrow muted">Monthly</div><h2>월별 입주 세대 · 2027 vs 2026</h2></div>
+      <div class="legend"><span><i class="sw y27"></i>2027년</span><span><i class="sw y26"></i>2026년</span></div>
+    </div>
+    <div class="chart" id="monthly"></div>
+    <div class="hint">막대를 누르면 그 달로 바뀝니다. 선택한 기간 밖의 달은 흐리게 보입니다.</div>
+  </section>
+
+  <section class="section" id="district-section">
+    <div class="head">
+      <div><div class="eyebrow muted">By District</div><h2>시군구별 입주 세대 · 증감</h2></div>
+      <div class="controls">
+        <select id="district-sido" aria-label="시도 선택"><option value="">전체 시도</option><option value="광주">광주</option><option value="전북">전북</option><option value="전남">전남</option></select>
+      </div>
     </div>
     <div class="tablewrap">
       <table>
-        <thead><tr><th>입주월</th><th>시도</th><th>시군구</th><th>아파트명</th><th>판매유형</th><th class="r">세대수</th><th>주소</th></tr></thead>
-        <tbody id="rows"></tbody>
+        <thead><tr><th>시군구</th><th>비교</th><th class="r">2027년</th><th class="r">2026년</th><th class="r">증감</th><th class="r">단지(27/26)</th></tr></thead>
+        <tbody id="district-rows"></tbody>
+      </table>
+    </div>
+    <div class="hint">2027년 세대수가 많은 순입니다. 2026년에 없던 시군구는 '신규'로 표시합니다.</div>
+  </section>
+
+  <section class="section" id="carry-section">
+    <div class="carry">
+      <div class="eyebrow">일정 확인 필요</div>
+      <h2>2026년 입주 예정이었다가 2027년 목록에도 오른 단지</h2>
+      <ul id="carry-list"></ul>
+      <div class="hint">입주가 미뤄졌을 가능성이 있습니다. 판촉 일정 잡기 전에 실제 입주 시점을 확인하세요.</div>
+    </div>
+  </section>
+
+  <section class="section" id="list">
+    <div class="head">
+      <div><div class="eyebrow muted">Complexes</div><h2>단지 리스트</h2></div>
+      <div class="controls">
+        <div class="ytabs" role="group" aria-label="연도">
+          <button type="button" class="ybtn" data-year="2027" aria-pressed="true">2027년</button>
+          <button type="button" class="ybtn" data-year="2026" aria-pressed="false">2026년</button>
+        </div>
+        <select id="list-sido" aria-label="시도 선택"><option value="">전체 시도</option><option value="광주">광주</option><option value="전북">전북</option><option value="전남">전남</option></select>
+        <span class="count" id="list-count">—</span>
+      </div>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>입주월</th><th>시도</th><th>시군구</th><th>아파트명</th><th>유형</th><th class="r">세대수</th><th>시공사</th><th>주소</th><th>정보</th></tr></thead>
+        <tbody id="list-rows"></tbody>
       </table>
     </div>
   </section>
 
-  <footer>자료: 한국부동산원 입주예정물량(2025-12-31 기준) + 담당 확인사항 반영 리스트 · 범위: 광주·전북·전남 30세대 이상 공동주택</footer>
+  <footer>
+    자료 · 2027년: 한국부동산원 입주예정물량(2025-12-31 기준, 30세대 이상 공동주택) + 담당 확인사항 반영 리스트 33개 단지 · 2026년: 「26년 신규아파트 입주DB」 현장확인용 시트 중 광주·전북·전남 34개 단지.<br>
+    유형 · 2027년은 분양·조합 / 임대, 2026년은 일반 / 조합 / 임대(세대수 50% 이상 기준)로 구분합니다. 두 해의 자료 기준이 달라 증감은 참고용입니다.<br>
+    2026년 '광주 부구'는 '광주 북구'로 바로잡았습니다.
+  </footer>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script>
 (function () {
-  const RAW = [
+  // [month, sido, sigungu, name, type, units, address]
+  const RAW27 = [
     ['2027-01','전남','광양시','더샵 광양레이크센텀','분양·조합',925,'전라남도 광양시 마동 348-4'],
     ['2027-01','전북','전주시','에코시티 더샵4차','분양·조합',576,'전북특별자치도 전주시 덕진구 송천동2가 1317-0'],
     ['2027-01','광주','광산구','소촌어등더포레젠','분양·조합',439,'광주광역시 소촌동 산 76-1'],
@@ -214,169 +269,247 @@
     ['2027-12','광주','서구','광주화정아이파크(2단지)','분양·조합',316,'광주광역시 서구 화정동 23-26'],
     ['2027-12','광주','남구','봉선동 르오네뜨 2차','분양·조합',56,'광주광역시 남구 봉선동 161-0']
   ];
-  const DATA = RAW.map(([month, sido, sigungu, name, type, units, address]) => ({ month, sido, sigungu, name, type, units, address }));
+  // [month, sido, sigungu, name, type, units, builder, area, link, address]
+  const RAW26 = [
+    ["2026-01","광주","서구","위파크마륵공원","일반",917,"주식회사 호반건설,주식회사 라인건설,해동건설 주식회사","106.55㎡ ~ 170.01㎡","https://www.zigbang.com/home/apt/danjis/51364","광주 서구 금호동 산 109"],
+    ["2026-01","광주","서구","상무지구광주형통합공공임대주택","임대",460,"","36㎡ ~ 84㎡","https://place.map.kakao.com/2090550649","광주 서구 치평동 1166"],
+    ["2026-01","광주","광산구","벨루미체첨단","일반",57,"주식회사 성암토건","182.2㎡ ~ 195㎡","https://www.zigbang.com/home/apt/danjis/91199","광주 광산구 쌍암동 694-77"],
+    ["2026-02","전남","해남군","해남해리2BL아파트","임대",400,"","29㎡ ~ 46㎡","","전남 해남군 해남읍 해리 696"],
+    ["2026-02","광주","광산구","광산센트럴파크","조합",397,"한국건설(주)","100㎡ ~ 111㎡","https://www.zigbang.com/home/apt/danjis/91544","광주 광산구 하산동 254-1"],
+    ["2026-02","전남","여수시","여수노블하임","조합",299,"한국토지주택공사","84㎡","https://place.map.kakao.com/506957255","전남 여수시 만흥동 1441-1"],
+    ["2026-02","전북","익산시","익산아르니에듀스카이","조합",295,"새천년건설","59㎡ ~ 84㎡","https://www.zigbang.com/home/apt/danjis/89442","전북 익산시 신동 142-111"],
+    ["2026-03","전북","군산시","군산한라비발디더프라임","일반",633,"HL디앤아이한라(주)","108㎡ ~ 328.4㎡","https://www.zigbang.com/home/apt/danjis/88203","전북 군산시 지곡동 126"],
+    ["2026-04","광주","북구","운암자이포레나퍼스티체1,2,3단지","조합",3214,"GS건설(주),한화/건설,HDC현대산업개발","78.35㎡ ~ 142.28㎡","https://www.zigbang.com/home/apt/danjis/85309","광주 북구 운암동 252"],
+    ["2026-05","전북","군산시","군산경남아너스빌디오션","일반",873,"경남기업(주)","112㎡ ~ 145㎡","https://www.zigbang.com/home/apt/danjis/89690","전북 군산시 조촌동 739-6"],
+    ["2026-05","광주","동구","교대역모아엘가그랑데","일반",815,"혜림건설(주)","80㎡ ~ 146㎡","https://www.zigbang.com/home/apt/danjis/51901","광주 동구 계림동 125"],
+    ["2026-05","광주","서구","상무양우내안애퍼스트힐","조합",312,"양우건설(주)","78.39㎡ ~ 109.93㎡","https://www.zigbang.com/home/apt/danjis/91890","광주 서구 마륵동 47-7"],
+    ["2026-06","전남","장성군","장성남양휴튼리버파크","일반",180,"남양건설 주식회사","106㎡ ~ 111㎡","https://www.zigbang.com/home/apt/danjis/92159","전남 장성군 장성읍 기산리 112-32"],
+    ["2026-07","광주","광산구","광주선운2지구예다음아파트(B-2","일반",554,"(주)더와이","110.08㎡ ~ 110.86㎡","https://www.zigbang.com/home/apt/danjis/88986","광주 광산구 운수동 34-1"],
+    ["2026-08","광주","서구","위파크더센트럴","일반",695,"주식회사 호반건설","110.33㎡ ~ 136.18㎡","https://www.zigbang.com/home/apt/danjis/91478","광주 서구 풍암동 10-12"],
+    ["2026-08","전남","광양시","광양중동센텀유블레스","임대",376,"","84㎡","","전남 광양시 중동 1322-1"],
+    ["2026-08","광주","서구","PH543","일반",99,"현대엔지니어링(주)","205㎡ ~ 224㎡","https://place.map.kakao.com/1862451980","광주 서구 광천동 54-3"],
+    ["2026-09","광주","북구","본촌동코오롱하늘채아파트","일반",428,"코오롱글로벌(주)","","","광주 북구 본촌동 180"],
+    ["2026-09","광주","북구","운암산공원진아리채그랑뷰","조합",414,"주식회사 리채","111.77㎡ ~ 112.43㎡","https://www.zigbang.com/home/apt/danjis/91891","광주 북구 동림동 272"],
+    ["2026-09","광주","북구","연제첨단광신프로그레스","일반",380,"(주)광신종합건설","102.14㎡ ~ 109.28㎡","https://www.zigbang.com/home/apt/danjis/91935","광주 북구 연제동 583-6"],
+    ["2026-10","전남","장성군","첨단제일풍경채A2블록","일반",1845,"제일건설(주)","82.03㎡ ~ 115.13㎡","https://www.zigbang.com/home/apt/danjis/91569","전남 장성군 진원면 산동리 540-12"],
+    ["2026-10","전남","장성군","힐스테이트첨단센트럴","일반",1520,"현대엔지니어링 (주)","118.53㎡ ~ 118.8㎡","https://www.zigbang.com/home/apt/danjis/91434","전남 장성군 진원면 산동리 81-93"],
+    ["2026-10","광주","북구","위파크일곡공원","일반",1004,"라인건설,호반건설","111.06㎡ ~ 179.99㎡","https://www.zigbang.com/home/apt/danjis/91763","광주 북구 삼각동 700"],
+    ["2026-10","광주","북구","첨단제일풍경채A5블록","조합",584,"제일건설(주)","150.73㎡ ~ 242.15㎡","https://www.zigbang.com/home/apt/danjis/91570","광주 북구 월출동 695-6"],
+    ["2026-10","전북","완주군","봉동한양립스센텀포레","조합",516,"봉동지역주택조합","79㎡ ~ 110㎡","https://www.zigbang.com/home/apt/danjis/90654","전북 완주군 봉동읍 용암리 48-1"],
+    ["2026-11","전북","전주시","서신더샵비발디","일반",1914,"포스코이앤씨,HL디앤아이한라(주)","80.49㎡ ~ 152.31㎡","https://www.zigbang.com/home/apt/danjis/86156","전북 전주시 완산구 서신동 40-4"],
+    ["2026-12","광주","북구","힐스테이트중외공원2블록,3블럭","일반",1466,"현대엔지니어링(주),범양건영(주)","107.93㎡ ~ 202.14㎡","https://www.zigbang.com/home/apt/danjis/91335","광주 북구 매곡동 산 131-1,355"],
+    ["2026-12","전북","군산시","군산레이크시티아이파크","일반",722,"신한자산신탁 주식회사","108.4㎡ ~ 292.14㎡","https://www.zigbang.com/home/apt/danjis/89846","전북 군산시 지곡동 산 137-1"],
+    ["2026-12","전북","익산시","익산부송아이파크","일반",511,"주식회사 하나자산신탁","107.5㎡ ~ 155.57㎡","https://www.zigbang.com/home/apt/danjis/92334","전북 익산시 부송동 279"],
+    ["2026-12","전북","군산시","군산은파호수공원유탑유블레스","임대",378,"주택도시보증공사","84㎡","https://place.map.kakao.com/688217461","전북 군산시 미룡동 92-13"],
+    ["2026-12","광주","남구","두산위브트레지움월산","조합",320,"두산건설(주)","74㎡ ~ 84㎡","https://www.zigbang.com/home/apt/danjis/88170","광주 남구 월산동 242-1"],
+    ["2026-12","전북","군산시","효성해링턴플레이스군산","일반",275,"진흥기업","87㎡ ~ 273㎡","https://www.zigbang.com/home/apt/danjis/89730","전북 군산시 경장동 504-4"],
+    ["2026-12","전북","전주시","에코시티한양수자인디에스틴","일반",268,"(주)한양","114.47㎡ ~ 115.19㎡","https://www.zigbang.com/home/apt/danjis/89984","전북 전주시 덕진구 송천동2가 1315"],
+    ["2026-12","전남","목포시","하당르파르크시그니처","일반",70,"(주)금강건설","107㎡ ~ 177㎡","https://www.zigbang.com/home/apt/danjis/93051","전남 목포시 석현동 1175-11"]
+  ];
+  const D27 = RAW27.map(([month, sido, sigungu, name, type, units, address]) => ({ year: 2027, month, sido, sigungu, name, type, units, address, builder: '', link: '' }));
+  const D26 = RAW26.map(([month, sido, sigungu, name, type, units, builder, area, link, address]) => ({ year: 2026, month, sido, sigungu, name, type, units, address, builder, area, link }));
   const SIDO = ['광주', '전북', '전남'];
-  const KEYS = ['gwangju', 'jeonbuk', 'jeonnam'];
-  const COLORS = ['var(--red-hi)', 'var(--gray)', 'var(--rose)'];
   const fmt = d3.format(',');
-  const mLabel = (m) => (+m.slice(5, 7)) + '월';
-  const state = { period: '', sido: '' };
-  try { const h = location.hash.slice(1); if (/^(q[1-4]|m(0[1-9]|1[0-2]))$/.test(h)) state.period = h[0] === 'q' ? 'Q' + h[1] : '2027-' + h.slice(1); } catch (e) {}
+  const pct = d3.format('+.1f');
+  const mm = (m) => +m.slice(5, 7);
+  const state = { period: '', listYear: 2027, listSido: '', distSido: '' };
+  try {
+    const h = location.hash.slice(1);
+    if (/^q[1-4]$/.test(h)) state.period = 'Q' + h[1];
+    else if (/^m(0[1-9]|1[0-2])$/.test(h)) state.period = 'M' + h.slice(1);
+  } catch (e) {}
 
-  const inPeriod = (m, p) => !p || (p[0] === 'Q' ? Math.ceil(+m.slice(5, 7) / 3) === +p[1] : m === p);
-  const pLabel = (p) => !p ? '2027년 전체' : p[0] === 'Q' ? `2027년 ${p[1]}분기` : `2027년 ${mLabel(p)}`;
-  const pRange = (p) => !p ? '2027년 1~12월' : p[0] === 'Q' ? `2027년 ${p[1] * 3 - 2}~${p[1] * 3}월` : `2027년 ${mLabel(p)}`;
+  const inPeriod = (month, p) => !p || (p[0] === 'Q' ? Math.ceil(mm(month) / 3) === +p[1] : mm(month) === +p.slice(1));
+  const pName = (p) => !p ? '전체' : p[0] === 'Q' ? `${p[1]}분기` : `${+p.slice(1)}월`;
+  const pRange = (y, p) => !p ? `${y}년 1~12월` : p[0] === 'Q' ? `${y}년 ${p[1] * 3 - 2}~${p[1] * 3}월` : `${y}년 ${+p.slice(1)}월`;
+  const isRent = (r) => r.type === '임대';
   const $ = (id) => document.getElementById(id);
+  const norm = (s) => s.replace(/\s+/g, '').replace(/아파트$/, '').replace(/[()]/g, '');
+
+  function stats(rows) {
+    const units = d3.sum(rows, (r) => r.units), count = rows.length;
+    return { units, count, avg: count ? Math.round(units / count) : 0, big: rows.filter((r) => r.units >= 1000).length, rent: d3.sum(rows.filter(isRent), (r) => r.units) };
+  }
+  function delta(el, cur, prev, unit) {
+    const d = cur - prev;
+    el.className = 'delta ' + (d > 0 ? 'up' : d < 0 ? 'down' : 'flat');
+    if (d === 0) { el.textContent = '전년과 같음'; return; }
+    const p = prev ? ` (${pct(d / prev * 100)}%)` : '';
+    el.textContent = `${d > 0 ? '▲' : '▼'} ${fmt(Math.abs(d))}${unit}${p}`;
+  }
 
   // month buttons
   const monthRow = $('month-row');
   for (let i = 1; i <= 12; i++) {
     const b = document.createElement('button');
-    b.type = 'button'; b.className = 'pbtn'; b.id = 'p-m' + String(i).padStart(2, '0');
-    b.dataset.period = '2027-' + String(i).padStart(2, '0'); b.textContent = i + '월';
+    b.type = 'button'; b.className = 'pbtn'; b.dataset.period = 'M' + String(i).padStart(2, '0'); b.textContent = i + '월';
+    b.setAttribute('aria-pressed', 'false');
     monthRow.appendChild(b);
   }
   function setPeriod(p) {
     state.period = p;
-    try { history.replaceState(null, '', p ? '#' + (p[0] === 'Q' ? 'q' + p[1] : 'm' + p.slice(5)) : location.pathname + location.search); } catch (e) {}
+    try { history.replaceState(null, '', p ? '#' + p.toLowerCase() : location.pathname + location.search); } catch (e) {}
     render();
   }
   document.querySelectorAll('.pbtn').forEach((b) => b.addEventListener('click', () => setPeriod(b.dataset.period || '')));
-  $('sido-filter').addEventListener('change', (e) => { state.sido = e.target.value; drawTable(); });
+  document.querySelectorAll('.ybtn').forEach((b) => b.addEventListener('click', () => { state.listYear = +b.dataset.year; drawList(); }));
+  $('list-sido').addEventListener('change', (e) => { state.listSido = e.target.value; drawList(); });
+  $('district-sido').addEventListener('change', (e) => { state.distSido = e.target.value; drawDistricts(); });
 
-  // province cards
+  // province blocks
   const split = $('sido-split');
-  [['광주', 0], ['전남', 2], ['전북', 1]].forEach(([s, i]) => {
-    const d = document.createElement('div'); d.className = 'sido';
-    d.innerHTML = `<div class="name"><i class="sw c${i}"></i>${s}</div><div class="big"><span data-u></span><span class="unit">세대</span></div><div class="sub"><span data-c></span>개 단지 · 비중 <span data-s></span>%</div><div class="bar"><i data-b style="background:${COLORS[i]}"></i></div>`;
-    d.dataset.sido = s; split.appendChild(d);
+  SIDO.forEach((s) => {
+    const d = document.createElement('div'); d.className = 'sido'; d.dataset.sido = s;
+    d.innerHTML = `<div class="name">${s}</div><div class="big"><span data-u></span><span class="unit">세대</span></div><div class="delta" data-d></div>
+      <div class="pair"><span>2027</span><span class="track"><i data-b27 style="background:var(--red-hi)"></i></span><span class="r" data-v27></span>
+      <span>2026</span><span class="track"><i data-b26 style="background:var(--prev)"></i></span><span class="r" data-v26></span></div>
+      <div class="sub" data-c></div>`;
+    split.appendChild(d);
   });
 
-  function rowsFor(p) { return DATA.filter((r) => inPeriod(r.month, p)); }
+  // carried-over complexes (listed in both years)
+  (function () {
+    const ul = $('carry-list');
+    const map = new Map(D26.map((r) => [norm(r.name), r]));
+    const hits = D27.filter((r) => map.has(norm(r.name))).map((r) => [map.get(norm(r.name)), r]);
+    if (!hits.length) { $('carry-section').hidden = true; return; }
+    hits.forEach(([a, b]) => {
+      const li = document.createElement('li');
+      li.textContent = `${b.name} · ${b.sido} ${b.sigungu} ${fmt(b.units)}세대`;
+      const m = document.createElement('span'); m.className = 'm';
+      m.textContent = `2026년 ${mm(a.month)}월 → 2027년 ${mm(b.month)}월`;
+      li.appendChild(m); ul.appendChild(li);
+    });
+  })();
 
   function render() {
     const p = state.period;
     document.querySelectorAll('.pbtn').forEach((b) => b.setAttribute('aria-pressed', String((b.dataset.period || '') === p)));
-    const rows = rowsFor(p);
-    const units = d3.sum(rows, (r) => r.units), count = rows.length;
-    const sale = d3.sum(rows.filter((r) => r.type === '분양·조합'), (r) => r.units);
-    const peak = d3.rollups(rows, (v) => d3.sum(v, (r) => r.units), (r) => r.month).sort((a, b) => b[1] - a[1])[0];
-    $('t-period').textContent = pLabel(p);
-    $('t-count').textContent = fmt(count);
-    $('t-units').textContent = fmt(units);
-    $('t-peak').textContent = peak ? mLabel(peak[0]) : '—';
+    $('pcompare').textContent = `${pRange(2027, p)}과 ${pRange(2026, p)}을 비교합니다.`;
+    const r27 = D27.filter((r) => inPeriod(r.month, p)), r26 = D26.filter((r) => inPeriod(r.month, p));
+    const a = stats(r27), b = stats(r26);
+    const peak = d3.rollups(r27, (v) => d3.sum(v, (r) => r.units), (r) => r.month).sort((x, y) => y[1] - x[1])[0];
+    const top = d3.rollups(r27, (v) => d3.sum(v, (r) => r.units), (r) => r.sido + ' ' + r.sigungu).sort((x, y) => y[1] - x[1])[0];
+    $('t-period').textContent = `2027년 ${pName(p)}`;
+    $('t-count').textContent = fmt(a.count);
+    $('t-units').textContent = fmt(a.units);
+    $('t-prev').textContent = fmt(b.units);
+    const td = $('t-delta'), dd = a.units - b.units;
+    td.className = dd > 0 ? 'up' : dd < 0 ? 'down' : '';
+    td.textContent = dd === 0 ? '변화가 없습니다' : `${fmt(Math.abs(dd))}세대${b.units ? `(${pct(dd / b.units * 100).replace('+', '')}%)` : ''} ${dd > 0 ? '많습니다' : '적습니다'}`;
+    $('t-peak').textContent = peak ? `${mm(peak[0])}월` : '—';
     $('t-peakunits').textContent = peak ? fmt(peak[1]) : '0';
-    $('k-units').textContent = fmt(units);
-    $('k-period').textContent = pRange(p);
-    $('k-count').textContent = fmt(count);
-    $('k-avg').textContent = count ? fmt(Math.round(units / count)) : '0';
-    $('k-big').textContent = rows.filter((r) => r.units >= 1000).length;
-    $('k-sale').textContent = units ? d3.format('.1f')(sale / units * 100) : '0.0';
-    split.querySelectorAll('.sido').forEach((el) => {
-      const rs = rows.filter((r) => r.sido === el.dataset.sido);
-      const u = d3.sum(rs, (r) => r.units), sh = units ? u / units * 100 : 0;
-      el.querySelector('[data-u]').textContent = fmt(u);
-      el.querySelector('[data-c]').textContent = rs.length;
-      el.querySelector('[data-s]').textContent = d3.format('.1f')(sh);
-      el.querySelector('[data-b]').style.width = sh + '%';
-    });
-    drawMonthly(); drawSigungu(); drawTable();
-  }
+    $('t-top').textContent = top ? `${top[0]}(${fmt(top[1])}세대)` : '—';
 
-  function tipBox(el) { const t = document.createElement('div'); t.className = 'tip'; t.hidden = true; el.appendChild(t); return t; }
-  function placeTip(el, tip, x, y) {
-    const w = tip.offsetWidth; tip.style.left = Math.max(0, Math.min(el.clientWidth - w, x - w / 2)) + 'px';
-    tip.style.top = Math.max(0, y - tip.offsetHeight - 8) + 'px';
-  }
-  function tipLines(tip, title, lines) {
-    tip.replaceChildren();
-    const h = document.createElement('strong'); h.textContent = title; tip.appendChild(h);
-    lines.forEach((t) => { const d = document.createElement('div'); d.className = 'm'; d.textContent = t; tip.appendChild(d); });
-    tip.hidden = false;
+    [['units', '세대'], ['count', '개'], ['avg', '세대'], ['big', '개'], ['rent', '세대']].forEach(([k, u]) => {
+      $('k-' + k).textContent = fmt(a[k]);
+      delta($('d-' + k), a[k], b[k], u);
+      $('p-' + k).textContent = `${pRange(2026, p)} ${fmt(b[k])}${u}`;
+    });
+
+    const max = d3.max(SIDO.flatMap((s) => [d3.sum(r27.filter((r) => r.sido === s), (r) => r.units), d3.sum(r26.filter((r) => r.sido === s), (r) => r.units)])) || 1;
+    split.querySelectorAll('.sido').forEach((el) => {
+      const s = el.dataset.sido;
+      const x = r27.filter((r) => r.sido === s), y = r26.filter((r) => r.sido === s);
+      const u27 = d3.sum(x, (r) => r.units), u26 = d3.sum(y, (r) => r.units);
+      el.querySelector('[data-u]').textContent = fmt(u27);
+      delta(el.querySelector('[data-d]'), u27, u26, '세대');
+      el.querySelector('[data-b27]').style.width = (u27 / max * 100) + '%';
+      el.querySelector('[data-b26]').style.width = (u26 / max * 100) + '%';
+      el.querySelector('[data-v27]').textContent = fmt(u27);
+      el.querySelector('[data-v26]').textContent = fmt(u26);
+      el.querySelector('[data-c]').textContent = `단지 ${x.length}개 (전년 ${y.length}개)`;
+    });
+    drawMonthly(); drawDistricts(); drawList();
   }
 
   function drawMonthly() {
     const el = $('monthly'); el.replaceChildren();
     const p = state.period;
     const data = d3.range(1, 13).map((i) => {
-      const month = '2027-' + String(i).padStart(2, '0');
-      const rs = DATA.filter((r) => r.month === month);
-      const o = { month, label: i + '월', count: rs.length, total: d3.sum(rs, (r) => r.units) };
-      SIDO.forEach((s, k) => { o[KEYS[k]] = d3.sum(rs.filter((r) => r.sido === s), (r) => r.units); });
-      return o;
+      const f = (D) => D.filter((r) => mm(r.month) === i);
+      const a = f(D27), b = f(D26);
+      return { i, label: i + '월', u27: d3.sum(a, (r) => r.units), u26: d3.sum(b, (r) => r.units), c27: a.length, c26: b.length, on: inPeriod('2027-' + String(i).padStart(2, '0'), p) };
     });
-    const W = el.clientWidth || 600, H = 280, narrow = W < 560;
+    const W = el.clientWidth || 700, H = 300, narrow = W < 600;
     const m = { t: 22, r: 4, b: 26, l: 46 };
-    const x = d3.scaleBand().domain(data.map((r) => r.label)).range([m.l, W - m.r]).padding(narrow ? 0.18 : 0.3);
-    const y = d3.scaleLinear().domain([0, d3.max(data, (r) => r.total)]).nice().range([H - m.b, m.t]);
+    const x = d3.scaleBand().domain(data.map((r) => r.label)).range([m.l, W - m.r]).padding(narrow ? 0.12 : 0.22);
+    const xi = d3.scaleBand().domain(['26', '27']).range([0, x.bandwidth()]).padding(0.08);
+    const y = d3.scaleLinear().domain([0, d3.max(data, (r) => Math.max(r.u27, r.u26))]).nice().range([H - m.b, m.t]);
     const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H)
-      .attr('role', 'img').attr('aria-label', `2027년 입주월별 시도별 입주 세대수, ${pLabel(p)} 강조`);
+      .attr('role', 'img').attr('aria-label', `월별 입주 세대 2027년과 2026년 비교, ${pName(p)} 강조`);
     svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.l - m.r)).tickFormat(fmt)).call((g) => g.select('.domain').remove());
-    svg.append('g').selectAll('g').data(d3.stack().keys(KEYS)(data)).join('g').style('fill', (s, i) => COLORS[i])
-      .selectAll('rect').data((s) => s).join('rect')
-      .attr('x', (pt) => x(pt.data.label)).attr('width', x.bandwidth())
-      .attr('y', (pt) => y(pt[1])).attr('height', (pt) => Math.max(0, y(pt[0]) - y(pt[1])))
-      .style('opacity', (pt) => inPeriod(pt.data.month, p) ? 1 : 0.2);
+    const g = svg.append('g').selectAll('g').data(data).join('g').attr('transform', (r) => `translate(${x(r.label)},0)`).style('opacity', (r) => r.on ? 1 : 0.25);
+    g.append('rect').attr('x', xi('26')).attr('width', xi.bandwidth()).attr('y', (r) => y(r.u26)).attr('height', (r) => y(0) - y(r.u26)).attr('rx', 1.5).style('fill', 'var(--prev)');
+    g.append('rect').attr('x', xi('27')).attr('width', xi.bandwidth()).attr('y', (r) => y(r.u27)).attr('height', (r) => y(0) - y(r.u27)).attr('rx', 1.5).style('fill', 'var(--red-hi)');
     const short = (v) => v >= 1000 ? (Math.round(v / 100) / 10) + 'k' : String(v);
-    svg.append('g').selectAll('text').data(data).join('text').attr('class', 'val').attr('text-anchor', 'middle')
-      .attr('x', (r) => x(r.label) + x.bandwidth() / 2).attr('y', (r) => y(r.total) - 6)
-      .style('font-size', narrow ? '10px' : null).style('opacity', (r) => inPeriod(r.month, p) ? 1 : 0.45)
-      .text((r) => narrow ? short(r.total) : fmt(r.total));
-    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickSize(0).tickPadding(8)).call((g) => g.select('.domain').remove());
-    const tip = tipBox(el);
+    if (!narrow) g.append('text').attr('class', 'val').attr('text-anchor', 'middle').attr('x', xi('27') + xi.bandwidth() / 2).attr('y', (r) => y(r.u27) - 5).text((r) => r.u27 ? short(r.u27) : '');
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickSize(0).tickPadding(8)).call((gg) => gg.select('.domain').remove());
+    const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; el.appendChild(tip);
     svg.append('g').selectAll('rect').data(data).join('rect')
       .attr('x', (r) => x(r.label) - x.step() * x.paddingInner() / 2).attr('width', x.step())
       .attr('y', m.t).attr('height', H - m.t - m.b).style('fill', 'transparent').style('cursor', 'pointer')
-      .on('click', (ev, r) => setPeriod(state.period === r.month ? '' : r.month))
+      .on('click', (ev, r) => { const v = 'M' + String(r.i).padStart(2, '0'); setPeriod(state.period === v ? '' : v); })
       .on('pointerenter pointermove', (ev, r) => {
-        tipLines(tip, `2027년 ${r.label} · ${fmt(r.total)}세대 (${r.count}개 단지)`, SIDO.map((s, k) => r[KEYS[k]] ? `${s} ${fmt(r[KEYS[k]])}세대` : null).filter(Boolean));
-        placeTip(el, tip, x(r.label) + x.bandwidth() / 2, y(r.total));
+        tip.replaceChildren();
+        const d = r.u27 - r.u26;
+        [[`${r.label} 입주 세대`, 'strong'], [`2027년 ${fmt(r.u27)}세대 · ${r.c27}개 단지`, 'div'], [`2026년 ${fmt(r.u26)}세대 · ${r.c26}개 단지`, 'm'], [`증감 ${d > 0 ? '▲' : d < 0 ? '▼' : ''} ${fmt(Math.abs(d))}세대`, d > 0 ? 'up' : d < 0 ? 'down' : 'm']]
+          .forEach(([t, c]) => { const n = document.createElement(c === 'strong' ? 'strong' : 'div'); if (c !== 'strong' && c !== 'div') n.className = c; n.textContent = t; tip.appendChild(n); });
+        tip.hidden = false;
+        const cx = x(r.label) + x.bandwidth() / 2, w = tip.offsetWidth;
+        tip.style.left = Math.max(0, Math.min(W - w, cx - w / 2)) + 'px';
+        tip.style.top = Math.max(0, y(Math.max(r.u27, r.u26)) - tip.offsetHeight - 10) + 'px';
       })
       .on('pointerleave', () => { tip.hidden = true; });
   }
 
-  function drawSigungu() {
-    const el = $('sigungu'); el.replaceChildren();
-    const data = d3.rollups(rowsFor(state.period), (v) => ({ count: v.length, units: d3.sum(v, (r) => r.units) }), (r) => r.sido + ' ' + r.sigungu)
-      .map(([area, v]) => ({ area, sido: area.split(' ')[0], ...v })).sort((a, b) => b.units - a.units);
-    if (!data.length) { const e = document.createElement('div'); e.className = 'empty'; e.textContent = `${pLabel(state.period)}에는 입주 예정 단지가 없습니다.`; el.appendChild(e); return; }
-    const W = el.clientWidth || 400, row = 26, H = data.length * row + 8;
-    const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H)
-      .attr('role', 'img').attr('aria-label', `${pLabel(state.period)} 시군구별 입주 세대수`);
-    const labels = svg.append('g').selectAll('text').data(data).join('text').attr('class', 'axl').attr('text-anchor', 'end').attr('dy', '0.35em').text((r) => r.area);
-    let lw = 0; labels.each(function () { lw = Math.max(lw, this.getComputedTextLength()); });
-    const ml = Math.ceil(lw) + 10, mr = 56;
-    const x = d3.scaleLinear().domain([0, d3.max(data, (r) => r.units)]).range([ml, Math.max(ml + 40, W - mr)]);
-    const yy = (i) => i * row + row / 2 + 4;
-    labels.attr('x', ml - 8).attr('y', (r, i) => yy(i));
-    svg.append('g').selectAll('rect').data(data).join('rect').attr('x', ml).attr('y', (r, i) => yy(i) - 7).attr('height', 14).attr('rx', 2)
-      .attr('width', (r) => Math.max(1, x(r.units) - ml)).style('fill', (r) => COLORS[SIDO.indexOf(r.sido)]);
-    svg.append('g').selectAll('text').data(data).join('text').attr('class', 'val').attr('dy', '0.35em')
-      .attr('x', (r) => x(r.units) + 6).attr('y', (r, i) => yy(i)).text((r) => fmt(r.units));
-    const tip = tipBox(el);
-    svg.append('g').selectAll('rect').data(data).join('rect').attr('x', 0).attr('width', W).attr('y', (r, i) => i * row + 4).attr('height', row).style('fill', 'transparent')
-      .on('pointerenter pointermove', (ev, r) => { tipLines(tip, r.area, [`${fmt(r.units)}세대 · ${r.count}개 단지`]); placeTip(el, tip, Math.min(x(r.units), W - 40), yy(data.indexOf(r)) - 8); })
-      .on('pointerleave', () => { tip.hidden = true; });
+  function drawDistricts() {
+    const tb = $('district-rows'); tb.replaceChildren();
+    const p = state.period, s = state.distSido;
+    const f = (D) => D.filter((r) => inPeriod(r.month, p) && (!s || r.sido === s));
+    const m = new Map();
+    const add = (r, k) => { const key = r.sido + ' ' + r.sigungu; const o = m.get(key) || { key, u27: 0, u26: 0, c27: 0, c26: 0 }; o['u' + k] += r.units; o['c' + k] += 1; m.set(key, o); };
+    f(D27).forEach((r) => add(r, 27)); f(D26).forEach((r) => add(r, 26));
+    const rows = [...m.values()].sort((a, b) => b.u27 - a.u27 || b.u26 - a.u26);
+    if (!rows.length) { const tr = tb.insertRow(); const td = tr.insertCell(); td.colSpan = 6; td.textContent = '선택한 기간에 입주 예정 단지가 없습니다.'; return; }
+    const max = d3.max(rows, (r) => Math.max(r.u27, r.u26)) || 1;
+    rows.forEach((r) => {
+      const tr = tb.insertRow();
+      const c0 = tr.insertCell(); c0.textContent = r.key;
+      if (r.u27 && !r.u26) { const sp = document.createElement('span'); sp.className = 'pill new'; sp.textContent = '신규'; sp.style.marginLeft = '6px'; c0.appendChild(sp); }
+      const cb = tr.insertCell(); cb.className = 'bars';
+      [['u27', 'var(--red-hi)'], ['u26', 'var(--prev)']].forEach(([k, c]) => { const t = document.createElement('div'); t.className = 'track'; const i = document.createElement('i'); i.style.width = (r[k] / max * 100) + '%'; i.style.background = c; t.appendChild(i); cb.appendChild(t); });
+      const c1 = tr.insertCell(); c1.className = 'r'; c1.textContent = fmt(r.u27); if (r.u27) c1.style.fontWeight = '500';
+      const c2 = tr.insertCell(); c2.className = 'r'; c2.style.color = 'var(--muted)'; c2.textContent = fmt(r.u26);
+      const d = r.u27 - r.u26; const c3 = tr.insertCell(); c3.className = 'r ' + (d > 0 ? 'up' : d < 0 ? 'down' : 'flat');
+      c3.textContent = d === 0 ? '0' : `${d > 0 ? '▲' : '▼'} ${fmt(Math.abs(d))}`;
+      const c4 = tr.insertCell(); c4.className = 'r'; c4.style.color = 'var(--muted)'; c4.textContent = `${r.c27} / ${r.c26}`;
+    });
   }
 
-  function drawTable() {
-    const tb = $('rows'); tb.replaceChildren();
-    const rows = rowsFor(state.period).filter((r) => !state.sido || r.sido === state.sido);
-    if (!rows.length) { const tr = tb.insertRow(); const td = tr.insertCell(); td.colSpan = 7; td.textContent = '선택한 기간과 시도에 해당하는 단지가 없습니다.'; return; }
+  function drawList() {
+    document.querySelectorAll('.ybtn').forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.year === state.listYear)));
+    const tb = $('list-rows'); tb.replaceChildren();
+    const D = state.listYear === 2027 ? D27 : D26;
+    const rows = D.filter((r) => inPeriod(r.month, state.period) && (!state.listSido || r.sido === state.listSido));
+    $('list-count').textContent = `${pRange(state.listYear, state.period)} · ${rows.length}개 단지 · ${fmt(d3.sum(rows, (r) => r.units))}세대`;
+    if (!rows.length) { const tr = tb.insertRow(); const td = tr.insertCell(); td.colSpan = 9; td.textContent = '선택한 조건에 해당하는 단지가 없습니다.'; return; }
     rows.forEach((r) => {
       const tr = tb.insertRow();
       const cell = (t, c) => { const td = tr.insertCell(); if (c) td.className = c; td.textContent = t; return td; };
-      cell(mLabel(r.month)); cell(r.sido); cell(r.sigungu); cell(r.name, 'nm');
-      const t = cell(''); const s = document.createElement('span'); s.className = 'pill' + (r.type === '임대' ? ' rent' : ''); s.textContent = r.type; t.appendChild(s);
+      cell(`${mm(r.month)}월`); cell(r.sido); cell(r.sigungu); cell(r.name, 'nm');
+      const t = cell(''); const sp = document.createElement('span'); sp.className = 'pill' + (isRent(r) ? ' rent' : ''); sp.textContent = r.type; t.appendChild(sp);
       const u = cell(fmt(r.units), 'r'); if (r.units >= 1000) u.classList.add('bigflag');
+      cell(r.builder || '—', 'bd');
       cell(r.address, 'ad');
+      const l = cell('');
+      if (/^https:\/\//.test(r.link)) { const a = document.createElement('a'); a.href = r.link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = '단지정보 ↗'; l.appendChild(a); } else l.textContent = '—';
     });
   }
 
   render();
-  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { drawMonthly(); drawSigungu(); }, 120); });
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(drawMonthly, 120); });
 })();
 </script>
-
 </body>
 </html>
