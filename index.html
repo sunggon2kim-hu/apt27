@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>호남권 입주현황 2027</title>
+<title>혼매호남팀 '27년 호남권 신규아파트입주현황</title>
 <meta name="description" content="호남권(광주·전북·전남) 2027년 신규아파트 입주 예정 현황과 2026년 대비 변화 — 아파트 판촉 현장관리자용">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500&display=swap">
 <style>
   /* Layout: one centred column, hairlines instead of boxes; LG red = 2027 / selected, warm gray = 2026 */
   :root {
-    --bg: #FFFFFF; --fg: #1A1A1D; --muted: #6E6D75; --line: #E7E5E8; --panel: #F7F6F8;
+    --bg: #FFFFFF; --fg: #141416; --muted: #4F4E56; --line: #DCDAE0; --panel: #F5F4F7; --sky: #FBF4F7;
     --red: #A50034; --red-hi: #A50034; --prev: #BDBCC3; --gray: #9A9AA0; --rose: #E3A1B4;
     --up: #1E7B53; --down: #B4530F; --tip: #FFFFFF; --grid: #E2E0E4;
     --serif: "Noto Serif KR", "Apple SD Gothic Neo", serif;
@@ -18,108 +18,149 @@
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --bg: #131315; --fg: #F2F1F4; --muted: #A4A3AB; --line: #2B2A30; --panel: #1C1B20; --red-hi: #E2336B; --prev: #55545C; --gray: #8C8C93; --rose: #D98AA2; --up: #4CC08D; --down: #F0954E; --tip: #222126; --grid: #2E2D33; color-scheme: dark; }
+    :root:not([data-theme="light"]) { --bg: #131315; --fg: #F4F3F6; --muted: #BEBDC5; --line: #36353C; --panel: #1E1D22; --sky: #1F1A1D; --red-hi: #E2336B; --prev: #55545C; --gray: #8C8C93; --rose: #D98AA2; --up: #4CC08D; --down: #F0954E; --tip: #222126; --grid: #2E2D33; color-scheme: dark; }
   }
-  :root[data-theme="dark"] { --bg: #131315; --fg: #F2F1F4; --muted: #A4A3AB; --line: #2B2A30; --panel: #1C1B20; --red-hi: #E2336B; --prev: #55545C; --gray: #8C8C93; --rose: #D98AA2; --up: #4CC08D; --down: #F0954E; --tip: #222126; --grid: #2E2D33; color-scheme: dark; }
+  :root[data-theme="dark"] { --bg: #131315; --fg: #F4F3F6; --muted: #BEBDC5; --line: #36353C; --panel: #1E1D22; --sky: #1F1A1D; --red-hi: #E2336B; --prev: #55545C; --gray: #8C8C93; --rose: #D98AA2; --up: #4CC08D; --down: #F0954E; --tip: #222126; --grid: #2E2D33; color-scheme: dark; }
 
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
   [hidden] { display: none !important; }
-  .page { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 48px 72px; display: flex; flex-direction: column; gap: 56px; }
-  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 4.4vw, 46px); line-height: 1.18; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
-  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(20px, 2.4vw, 26px); margin: 0; text-wrap: balance; }
-  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red-hi); }
+  .page { max-width: 1160px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: flex; flex-direction: column; gap: 64px; }
+  h1 { font-family: var(--sans); font-weight: 700; font-size: clamp(30px, 4.6vw, 50px); line-height: 1.2; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+  h2 { font-family: var(--sans); font-weight: 700; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.3; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+  .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red-hi); }
   .eyebrow.muted { color: var(--muted); }
   .num { font-variant-numeric: tabular-nums; }
   .up { color: var(--up); } .down { color: var(--down); } .flat { color: var(--muted); }
 
-  .hero { display: flex; flex-direction: column; gap: 18px; }
-  .mark { width: 28px; height: 3px; background: var(--red); }
-  .lede { margin: 0; color: var(--muted); max-width: 66ch; font-size: 16px; line-height: 1.8; }
-  .lede b { color: var(--fg); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: center; gap: 32px 48px; background: var(--sky); border-radius: 20px; padding: clamp(24px, 4vw, 48px); overflow: hidden; }
+  .hero-text { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+  .hero-art { min-width: 0; }
+  .hero-art svg { display: block; width: 100%; height: auto; max-width: 100%; }
+  .mark { width: 36px; height: 4px; background: var(--red); border-radius: 2px; }
+  .lede { margin: 0; color: var(--fg); max-width: 60ch; font-size: 19px; line-height: 1.75; }
+  .lede b { font-weight: 700; font-variant-numeric: tabular-nums; }
   .lede b.hl { color: var(--red-hi); }
   .lede b.up { color: var(--up); } .lede b.down { color: var(--down); }
-  .note { font-size: 12px; color: var(--muted); margin: 0; }
+  .note { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.6; }
 
-  .period { display: flex; flex-direction: column; gap: 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 14px; position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 5; }
-  .prow { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 4px; }
-  .plabel { font-size: 11px; letter-spacing: 0.14em; color: var(--muted); width: 4.5em; flex: none; }
-  .pbtn { font: inherit; font-size: 14px; font-variant-numeric: tabular-nums; padding: 8px 10px; border: 0; background: none; color: var(--muted); cursor: pointer; box-shadow: inset 0 -2px 0 transparent; transition: color .15s, box-shadow .15s; }
-  .pbtn:hover { color: var(--fg); }
-  .pbtn:focus-visible, .ybtn:focus-visible, select:focus-visible { outline: 2px solid var(--red-hi); outline-offset: 2px; }
-  .pbtn[aria-pressed="true"] { color: var(--red-hi); font-weight: 500; box-shadow: inset 0 -2px 0 var(--red-hi); }
-  .pcompare { font-size: 12px; color: var(--muted); padding-left: 4.5em; margin-top: 2px; }
+  .period { display: flex; flex-direction: column; gap: 6px; border-top: 2px solid var(--fg); border-bottom: 1px solid var(--line); padding-block: 14px; position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 5; }
+  .prow { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+  .plabel { font-size: 14px; font-weight: 700; color: var(--fg); width: 3.6em; flex: none; }
+  .pbtn { font: inherit; font-size: 16px; font-variant-numeric: tabular-nums; padding: 7px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--fg); cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+  .pbtn:hover { border-color: var(--red-hi); color: var(--red-hi); }
+  .pbtn:focus-visible, .ybtn:focus-visible, select:focus-visible { outline: 3px solid var(--red-hi); outline-offset: 2px; }
+  .pbtn[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #FFFFFF; font-weight: 700; }
+  .pcompare { font-size: 14px; color: var(--muted); padding-left: 4.3em; margin-top: 2px; }
 
-  .kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: -24px; }
+  .kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: -32px; }
   .kpi { padding: 4px 20px 4px 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
   .kpi + .kpi { padding-left: 20px; border-left: 1px solid var(--line); }
-  .label { font-size: 12px; color: var(--muted); }
-  .big { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); font-variant-numeric: tabular-nums; line-height: 1.1; letter-spacing: -0.01em; }
+  .label { font-size: 15px; font-weight: 500; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .label svg { width: 16px; height: 16px; flex: none; }
+  .big { font-family: var(--sans); font-weight: 700; font-size: clamp(32px, 3.6vw, 44px); font-variant-numeric: tabular-nums; line-height: 1.1; letter-spacing: -0.02em; }
   .kpi.main .big { color: var(--red-hi); }
-  .unit { font-family: var(--sans); font-size: 14px; color: var(--muted); margin-left: 4px; }
-  .delta { font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; }
-  .sub { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .unit { font-family: var(--sans); font-size: 16px; font-weight: 500; color: var(--muted); margin-left: 4px; }
+  .delta { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .sub { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
 
   .section { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
   .head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; }
   .head > div:first-child { display: flex; flex-direction: column; gap: 8px; }
-  .hint { font-size: 12px; color: var(--muted); }
-  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
-  .legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .hint { font-size: 14px; color: var(--muted); }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 15px; color: var(--fg); }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .sw { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
   .sw.y27 { background: var(--red-hi); } .sw.y26 { background: var(--prev); }
 
   .split { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
   .sido { padding: 20px 24px 4px 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
   .sido + .sido { padding-left: 24px; border-left: 1px solid var(--line); }
-  .sido .name { font-size: 14px; font-weight: 500; }
-  .pair { display: grid; grid-template-columns: 3.2em 1fr 4.6em; align-items: center; gap: 4px 8px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 4px; }
-  .pair .track { height: 6px; background: var(--panel); border-radius: 3px; overflow: hidden; }
-  .pair .track i { display: block; height: 100%; border-radius: 3px; transition: width .4s ease-out; }
-  .pair .r { text-align: right; }
+  .sido .name { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .sido .name svg { width: 20px; height: 20px; }
+  .pair { display: grid; grid-template-columns: 3.4em 1fr 4.8em; align-items: center; gap: 6px 10px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 4px; }
+  .pair .track { height: 10px; background: var(--panel); border-radius: 5px; overflow: hidden; }
+  .pair .track i { display: block; height: 100%; border-radius: 5px; transition: width .4s ease-out; }
+  .pair .r { text-align: right; color: var(--fg); font-weight: 500; }
 
-  .chart { position: relative; min-height: 300px; width: 100%; }
+  .chart { position: relative; min-height: 340px; width: 100%; }
   .chart svg { display: block; width: 100%; overflow: visible; }
-  .chart .tick text { fill: var(--muted); font-size: 12px; font-family: var(--sans); }
+  .chart .tick text { fill: var(--muted); font-size: 14px; font-family: var(--sans); }
   .chart .domain { stroke: none; }
   .chart .tick line { stroke: var(--grid); stroke-dasharray: 2 3; }
-  .val { fill: var(--fg); font-size: 11px; font-variant-numeric: tabular-nums; font-family: var(--sans); }
-  .tip { position: absolute; pointer-events: none; background: var(--tip); border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(0,0,0,.12); border-radius: 6px; padding: 10px 12px; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; z-index: 2; }
-  .tip strong { display: block; margin-bottom: 4px; font-weight: 500; }
+  .val { fill: var(--fg); font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; font-family: var(--sans); }
+  .tip { position: absolute; pointer-events: none; background: var(--tip); border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(0,0,0,.14); border-radius: 8px; padding: 12px 14px; font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; z-index: 2; }
+  .tip strong { display: block; margin-bottom: 4px; font-weight: 700; }
   .tip .m { color: var(--muted); }
 
-  .tablewrap { overflow-x: auto; border-top: 1px solid var(--fg); }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
-  th { text-align: left; font-weight: 400; font-size: 11px; letter-spacing: 0.06em; color: var(--muted); padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
-  td { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-  tbody tr:hover { background: var(--panel); }
+  .tablewrap { overflow-x: auto; border-top: 2px solid var(--fg); }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; font-variant-numeric: tabular-nums; }
+  th { text-align: left; font-weight: 700; font-size: 14px; color: var(--muted); padding: 14px 16px 14px 0; border-bottom: 1px solid var(--line); white-space: nowrap; background: var(--bg); }
+  td { padding: 15px 16px 15px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:nth-child(even) { background: var(--panel); }
+  tbody tr:hover { background: var(--sky); }
+  td:first-child, th:first-child { padding-left: 8px; }
   .r { text-align: right; }
-  td.nm { min-width: 190px; font-weight: 500; }
-  td.ad { color: var(--muted); min-width: 200px; font-size: 12px; }
-  td.bd { color: var(--muted); font-size: 12px; min-width: 120px; }
-  td.bars { min-width: 140px; width: 32%; }
-  td.bars .track { height: 6px; background: var(--panel); border-radius: 3px; overflow: hidden; margin: 3px 0; }
-  td.bars .track i { display: block; height: 100%; border-radius: 3px; }
-  .pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--panel); color: var(--muted); white-space: nowrap; }
-  .pill.rent { background: none; color: var(--gray); box-shadow: inset 0 0 0 1px var(--gray); }
-  .pill.new { background: none; color: var(--red-hi); box-shadow: inset 0 0 0 1px var(--red-hi); }
-  .bigflag { color: var(--red-hi); font-weight: 500; }
-  td a { color: var(--red-hi); text-decoration: none; white-space: nowrap; }
+  td.nm { min-width: 200px; font-weight: 700; }
+  td.ad { color: var(--muted); min-width: 220px; font-size: 14px; }
+  td.bd { color: var(--muted); font-size: 14px; min-width: 130px; }
+  td.bars { min-width: 150px; width: 30%; }
+  td.bars .track { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; margin: 4px 0; }
+  td.bars .track i { display: block; height: 100%; border-radius: 4px; }
+  .pill { display: inline-block; font-size: 13px; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: var(--line); color: var(--fg); white-space: nowrap; }
+  .pill.rent { background: none; color: var(--muted); box-shadow: inset 0 0 0 1px var(--muted); }
+  .pill.new { background: var(--red); color: #FFFFFF; }
+  .bigflag { color: var(--red-hi); font-weight: 700; }
+  td a { color: var(--red-hi); font-weight: 500; text-decoration: none; white-space: nowrap; }
   td a:hover { text-decoration: underline; }
 
-  .carry { border-left: 3px solid var(--red); padding: 4px 0 4px 16px; display: flex; flex-direction: column; gap: 8px; }
-  .carry ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
-  .carry li .m { color: var(--muted); font-size: 12px; margin-left: 6px; }
+  .carry { border-left: 4px solid var(--red); background: var(--sky); border-radius: 0 12px 12px 0; padding: 20px 24px; display: flex; flex-direction: column; gap: 10px; }
+  .carry ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 17px; font-weight: 500; }
+  .carry li .m { color: var(--red-hi); font-size: 15px; margin-left: 8px; font-weight: 700; }
 
   .controls { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
-  .ytabs { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
-  .ybtn { font: inherit; font-size: 13px; border: 0; background: none; color: var(--muted); padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+  .ytabs { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+  .ybtn { font: inherit; font-size: 15px; font-weight: 500; border: 0; background: none; color: var(--fg); padding: 7px 16px; border-radius: 999px; cursor: pointer; }
   .ybtn[aria-pressed="true"] { background: var(--red); color: #FFFFFF; }
-  select { font: inherit; font-size: 13px; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; }
-  .count { font-size: 12px; color: var(--muted); }
-  footer { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 20px; line-height: 1.8; }
+  select { font: inherit; font-size: 15px; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; }
+  .count { font-size: 15px; font-weight: 500; color: var(--fg); }
+  footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 20px; line-height: 1.8; }
+
+  /* This month: one deliberately bold band, same look in both themes */
+  .now { background: linear-gradient(135deg, #A50034 0%, #7C0028 100%); color: #FFFFFF; border-radius: 20px; padding: clamp(22px, 3.6vw, 40px); display: flex; flex-direction: column; gap: 24px; box-shadow: 0 18px 40px rgba(165, 0, 52, .22); }
+  .now-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px; }
+  .now-title { display: flex; flex-direction: column; gap: 6px; }
+  .now-eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; color: #FFD3E0; display: flex; align-items: center; gap: 8px; }
+  .now-eyebrow svg { width: 18px; height: 18px; }
+  .now h2 { color: #FFFFFF; font-size: clamp(24px, 3vw, 32px); }
+  .now-month { display: flex; align-items: center; gap: 10px; }
+  .now-month .m { font-size: clamp(26px, 3.4vw, 38px); font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; min-width: 6.4em; text-align: center; }
+  .nbtn { font: inherit; font-size: 18px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.45); background: rgba(255,255,255,.08); color: #FFFFFF; cursor: pointer; }
+  .nbtn:hover:not(:disabled) { background: rgba(255,255,255,.2); }
+  .nbtn:disabled { opacity: .35; cursor: default; }
+  .nbtn:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 2px; }
+  .now-sum { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 17px; color: #FFE6EE; }
+  .now-sum b { color: #FFFFFF; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; margin-right: 2px; }
+  .now-sum .today { font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #FFFFFF; color: #A50034; align-self: center; }
+  .now-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .now-col { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .now-col h3 { margin: 0; font-size: 19px; font-weight: 700; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .now-col h3 span { font-size: 15px; font-weight: 500; color: #FFD3E0; font-variant-numeric: tabular-nums; }
+  .apt { background: #FFFFFF; color: #141416; border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+  .apt .nm { font-size: 17px; font-weight: 700; line-height: 1.35; }
+  .apt .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .apt .where { font-size: 14px; color: #4F4E56; }
+  .apt .u { font-size: 22px; font-weight: 700; color: #A50034; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .apt .u small { font-size: 14px; font-weight: 500; color: #4F4E56; margin-left: 2px; }
+  .apt .meta { font-size: 13px; color: #4F4E56; }
+  .apt a { color: #A50034; font-weight: 700; font-size: 14px; text-decoration: none; }
+  .apt a:hover { text-decoration: underline; }
+  .now-empty { font-size: 15px; color: #FFD3E0; padding: 10px 0; }
 
   @media (max-width: 900px) {
+    .now-grid { grid-template-columns: minmax(0, 1fr); }
+    .hero { grid-template-columns: minmax(0, 1fr); }
+    .hero-art { order: -1; max-width: 420px; }
     .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; }
     .kpi, .kpi + .kpi { padding: 16px 12px 0 0; border-left: 0; border-top: 1px solid var(--line); }
     .kpi.main { grid-column: 1 / -1; }
@@ -132,13 +173,65 @@
 </head>
 <body>
 <div class="page">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-apt" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V4.5L12 3v18M12 21V8.5l7 1.5v11"/><path d="M8 7.5v.01M8 11v.01M8 14.5v.01M8 18v.01M15.5 13v.01M15.5 16.5v.01"/></g></symbol>
+  </svg>
+
   <header class="hero">
+    <div class="hero-text">
     <div class="mark"></div>
-    <div class="eyebrow">Honam · 현장관리자용 입주 현황</div>
-    <h1>'27년 호남권 신규아파트 입주현황</h1>
+    <div class="eyebrow">혼매호남팀 · 현장관리자용</div>
+    <h1>혼매호남팀 '27년 호남권 신규아파트입주현황</h1>
     <p class="lede"><b class="hl" id="t-period">2027년 전체</b>에는 광주·전북·전남에 <b id="t-count">—</b>개 단지, <b id="t-units">—</b>세대가 입주합니다. 전년 같은 기간(<b id="t-prev">—</b>세대)보다 <b id="t-delta">—</b>. 가장 많이 몰리는 달은 <b id="t-peak">—</b>(<b id="t-peakunits">—</b>세대)이고, 입주 세대가 가장 많은 곳은 <b id="t-top">—</b>입니다.</p>
     <p class="note">2027년: 한국부동산원 입주예정물량(2025-12-31 기준) + 담당 확인사항 · 2026년: 26년 신규아파트 입주DB(현장확인용) 호남권 · 실제 입주 시점과 세대수는 공사 일정에 따라 바뀔 수 있습니다.</p>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 480 320" role="img" aria-label="신축 아파트 단지 일러스트">
+        <defs>
+          <pattern id="win-light" width="16" height="20" patternUnits="userSpaceOnUse"><rect x="4" y="6" width="8" height="9" rx="1" style="fill:var(--bg)"/></pattern>
+          <pattern id="win-red" width="16" height="20" patternUnits="userSpaceOnUse"><rect x="4" y="6" width="8" height="9" rx="1" style="fill:#FFFFFF;fill-opacity:.72"/></pattern>
+        </defs>
+        <circle cx="392" cy="78" r="40" style="fill:var(--rose);fill-opacity:.45"/>
+        <rect x="24" y="128" width="72" height="156" rx="3" style="fill:var(--line)"/>
+        <rect x="32" y="142" width="56" height="132" style="fill:url(#win-light)"/>
+        <rect x="196" y="92" width="76" height="192" rx="3" style="fill:var(--prev)"/>
+        <rect x="204" y="106" width="60" height="168" style="fill:url(#win-light)"/>
+        <rect x="282" y="122" width="92" height="162" rx="3" style="fill:var(--line)"/>
+        <rect x="290" y="136" width="76" height="138" style="fill:url(#win-light)"/>
+        <rect x="384" y="162" width="74" height="122" rx="3" style="fill:var(--prev)"/>
+        <rect x="392" y="176" width="58" height="98" style="fill:url(#win-light)"/>
+        <rect x="104" y="44" width="84" height="240" rx="3" style="fill:var(--red)"/>
+        <rect x="128" y="30" width="36" height="16" rx="2" style="fill:var(--red)"/>
+        <rect x="112" y="58" width="68" height="216" style="fill:url(#win-red)"/>
+        <rect x="134" y="250" width="24" height="34" rx="2" style="fill:#FFFFFF;fill-opacity:.9"/>
+        <rect x="0" y="284" width="480" height="36" style="fill:var(--line)"/>
+        <rect x="0" y="282" width="480" height="3" style="fill:var(--prev)"/>
+        <g style="fill:var(--up);fill-opacity:.55">
+          <circle cx="16" cy="268" r="14"/><circle cx="186" cy="270" r="11"/><circle cx="376" cy="266" r="15"/><circle cx="468" cy="270" r="11"/>
+        </g>
+        <g style="fill:var(--muted)">
+          <rect x="15" y="276" width="2" height="8"/><rect x="185" y="276" width="2" height="8"/><rect x="375" y="276" width="2" height="8"/><rect x="467" y="276" width="2" height="8"/>
+        </g>
+      </svg>
+    </div>
   </header>
+
+  <section class="now" id="this-month" aria-labelledby="now-h">
+    <div class="now-head">
+      <div class="now-title">
+        <div class="now-eyebrow"><svg aria-hidden="true"><use href="#i-apt"/></svg>THIS MONTH</div>
+        <h2 id="now-h">이달의 아파트 입주현황</h2>
+      </div>
+      <div class="now-month">
+        <button type="button" class="nbtn" id="now-prev" aria-label="이전 달">◀</button>
+        <span class="m" id="now-label">—</span>
+        <button type="button" class="nbtn" id="now-next" aria-label="다음 달">▶</button>
+      </div>
+    </div>
+    <div class="now-sum" id="now-sum"></div>
+    <div class="now-grid" id="now-grid"></div>
+  </section>
+
 
   <nav class="period" aria-label="기간 선택">
     <div class="prow" role="group" aria-label="분기">
@@ -154,8 +247,8 @@
   </nav>
 
   <section class="kpis" aria-label="주요 지표">
-    <div class="kpi main"><div class="label">입주 세대</div><div class="big"><span id="k-units">—</span><span class="unit">세대</span></div><div class="delta" id="d-units">—</div><div class="sub" id="p-units">—</div></div>
-    <div class="kpi"><div class="label">입주 단지</div><div class="big"><span id="k-count">—</span><span class="unit">개</span></div><div class="delta" id="d-count">—</div><div class="sub" id="p-count">—</div></div>
+    <div class="kpi main"><div class="label"><svg aria-hidden="true"><use href="#i-apt"/></svg>입주 세대</div><div class="big"><span id="k-units">—</span><span class="unit">세대</span></div><div class="delta" id="d-units">—</div><div class="sub" id="p-units">—</div></div>
+    <div class="kpi"><div class="label"><svg aria-hidden="true"><use href="#i-apt"/></svg>입주 단지</div><div class="big"><span id="k-count">—</span><span class="unit">개</span></div><div class="delta" id="d-count">—</div><div class="sub" id="p-count">—</div></div>
     <div class="kpi"><div class="label">단지당 평균</div><div class="big"><span id="k-avg">—</span><span class="unit">세대</span></div><div class="delta" id="d-avg">—</div><div class="sub" id="p-avg">—</div></div>
     <div class="kpi"><div class="label">1,000세대 이상 대단지</div><div class="big"><span id="k-big">—</span><span class="unit">개</span></div><div class="delta" id="d-big">—</div><div class="sub" id="p-big">—</div></div>
     <div class="kpi"><div class="label">임대 세대</div><div class="big"><span id="k-rent">—</span><span class="unit">세대</span></div><div class="delta" id="d-rent">—</div><div class="sub" id="p-rent">—</div></div>
@@ -360,7 +453,7 @@
   const split = $('sido-split');
   SIDO.forEach((s) => {
     const d = document.createElement('div'); d.className = 'sido'; d.dataset.sido = s;
-    d.innerHTML = `<div class="name">${s}</div><div class="big"><span data-u></span><span class="unit">세대</span></div><div class="delta" data-d></div>
+    d.innerHTML = `<div class="name"><svg aria-hidden="true"><use href="#i-apt"/></svg>${s}</div><div class="big"><span data-u></span><span class="unit">세대</span></div><div class="delta" data-d></div>
       <div class="pair"><span>2027</span><span class="track"><i data-b27 style="background:var(--red-hi)"></i></span><span class="r" data-v27></span>
       <span>2026</span><span class="track"><i data-b26 style="background:var(--prev)"></i></span><span class="r" data-v26></span></div>
       <div class="sub" data-c></div>`;
@@ -431,7 +524,7 @@
       const a = f(D27), b = f(D26);
       return { i, label: i + '월', u27: d3.sum(a, (r) => r.units), u26: d3.sum(b, (r) => r.units), c27: a.length, c26: b.length, on: inPeriod('2027-' + String(i).padStart(2, '0'), p) };
     });
-    const W = el.clientWidth || 700, H = 300, narrow = W < 600;
+    const W = el.clientWidth || 700, H = 340, narrow = W < 600;
     const m = { t: 22, r: 4, b: 26, l: 46 };
     const x = d3.scaleBand().domain(data.map((r) => r.label)).range([m.l, W - m.r]).padding(narrow ? 0.12 : 0.22);
     const xi = d3.scaleBand().domain(['26', '27']).range([0, x.bandwidth()]).padding(0.08);
@@ -506,6 +599,51 @@
       if (/^https:\/\//.test(r.link)) { const a = document.createElement('a'); a.href = r.link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = '단지정보 ↗'; l.appendChild(a); } else l.textContent = '—';
     });
   }
+
+  // This month: today's month, movable across the months both lists cover
+  const ALL = D26.concat(D27);
+  const MONTHS = d3.range(0, 24).map((i) => `${2026 + Math.floor(i / 12)}-${String(i % 12 + 1).padStart(2, '0')}`);
+  const today = new Date();
+  const thisMonth = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
+  let nowIdx = Math.max(0, MONTHS.indexOf(thisMonth));
+  if (!MONTHS.includes(thisMonth)) nowIdx = thisMonth < MONTHS[0] ? 0 : MONTHS.length - 1;
+  function drawNow() {
+    const mon = MONTHS[nowIdx];
+    const rows = ALL.filter((r) => r.month === mon).sort((a, b) => b.units - a.units);
+    $('now-label').textContent = `${mon.slice(0, 4)}년 ${mm(mon)}월`;
+    $('now-prev').disabled = nowIdx === 0;
+    $('now-next').disabled = nowIdx === MONTHS.length - 1;
+    const sum = $('now-sum'); sum.replaceChildren();
+    const add = (html) => { const s = document.createElement('span'); s.innerHTML = html; sum.appendChild(s); };
+    add(`<b>${rows.length}</b>개 단지`);
+    add(`<b>${fmt(d3.sum(rows, (r) => r.units))}</b>세대 입주`);
+    if (mon === thisMonth) { const t = document.createElement('span'); t.className = 'today'; t.textContent = '이번 달'; sum.appendChild(t); }
+    const grid = $('now-grid'); grid.replaceChildren();
+    SIDO.forEach((s) => {
+      const list = rows.filter((r) => r.sido === s);
+      const col = document.createElement('div'); col.className = 'now-col';
+      const h = document.createElement('h3'); h.textContent = s;
+      const hs = document.createElement('span'); hs.textContent = list.length ? `${list.length}개 · ${fmt(d3.sum(list, (r) => r.units))}세대` : '0개'; h.appendChild(hs);
+      col.appendChild(h);
+      if (!list.length) { const e = document.createElement('div'); e.className = 'now-empty'; e.textContent = '이 달에 입주하는 단지가 없습니다.'; col.appendChild(e); }
+      list.forEach((r) => {
+        const c = document.createElement('div'); c.className = 'apt';
+        const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = r.name; c.appendChild(nm);
+        const row = document.createElement('div'); row.className = 'row';
+        const w = document.createElement('span'); w.className = 'where'; w.textContent = `${r.sido} ${r.sigungu} · ${r.type}`; row.appendChild(w);
+        const u = document.createElement('span'); u.className = 'u'; u.textContent = fmt(r.units); const sm = document.createElement('small'); sm.textContent = '세대'; u.appendChild(sm); row.appendChild(u);
+        c.appendChild(row);
+        if (r.builder) { const mt = document.createElement('div'); mt.className = 'meta'; mt.textContent = `시공 ${r.builder}`; c.appendChild(mt); }
+        const ad = document.createElement('div'); ad.className = 'meta'; ad.textContent = r.address; c.appendChild(ad);
+        if (/^https:\/\//.test(r.link)) { const a = document.createElement('a'); a.href = r.link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = '단지정보 보기 ↗'; c.appendChild(a); }
+        col.appendChild(c);
+      });
+      grid.appendChild(col);
+    });
+  }
+  $('now-prev').addEventListener('click', () => { if (nowIdx > 0) { nowIdx--; drawNow(); } });
+  $('now-next').addEventListener('click', () => { if (nowIdx < MONTHS.length - 1) { nowIdx++; drawNow(); } });
+  drawNow();
 
   render();
   let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(drawMonthly, 120); });
