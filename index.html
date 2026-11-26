@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="2027년 광주·전북·전남 신규아파트 입주 예정 현황">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>호남권 2027 입주현황</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500&display=swap">
+<style>
+  /* Layout: one centred column, hairlines instead of boxes, LG red only for what is selected or most important */
+  :root {
+    --bg: #FFFFFF; --fg: #1A1A1D; --muted: #6E6D75; --line: #E7E5E8; --panel: #F7F6F8;
+    --red: #A50034; --red-hi: #A50034; --gray: #9A9AA0; --rose: #E3A1B4; --tip: #FFFFFF; --grid: #E2E0E4;
+    --serif: "Noto Serif KR", "Apple SD Gothic Neo", serif;
+    --sans: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #131315; --fg: #F2F1F4; --muted: #A4A3AB; --line: #2B2A30; --panel: #1C1B20; --red-hi: #E2336B; --gray: #8C8C93; --rose: #D98AA2; --tip: #222126; --grid: #2E2D33; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #131315; --fg: #F2F1F4; --muted: #A4A3AB; --line: #2B2A30; --panel: #1C1B20; --red-hi: #E2336B; --gray: #8C8C93; --rose: #D98AA2; --tip: #222126; --grid: #2E2D33; color-scheme: dark; }
+
+  body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 48px 72px; display: flex; flex-direction: column; gap: 56px; }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 4.4vw, 46px); line-height: 1.18; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(20px, 2.4vw, 26px); margin: 0; text-wrap: balance; }
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red-hi); }
+  .eyebrow.muted { color: var(--muted); }
+
+  .hero { display: flex; flex-direction: column; gap: 18px; }
+  .mark { width: 28px; height: 3px; background: var(--red); }
+  .lede { margin: 0; color: var(--muted); max-width: 62ch; font-size: 16px; line-height: 1.8; }
+  .lede b { color: var(--fg); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .lede b.hl { color: var(--red-hi); }
+  .note { font-size: 12px; color: var(--muted); margin: 0; }
+
+  .period { display: flex; flex-direction: column; gap: 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 14px; }
+  .prow { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 4px; }
+  .plabel { font-size: 11px; letter-spacing: 0.14em; color: var(--muted); width: 4.5em; flex: none; }
+  .pbtn { font: inherit; font-size: 14px; font-variant-numeric: tabular-nums; padding: 8px 10px; border: 0; background: none; color: var(--muted); cursor: pointer; box-shadow: inset 0 -2px 0 transparent; transition: color .15s, box-shadow .15s; }
+  .pbtn:hover { color: var(--fg); }
+  .pbtn:focus-visible { outline: 2px solid var(--red-hi); outline-offset: 2px; }
+  .pbtn[aria-pressed="true"] { color: var(--red-hi); font-weight: 500; box-shadow: inset 0 -2px 0 var(--red-hi); }
+
+  .kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: -24px; }
+  .kpi { padding: 4px 20px 4px 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  .kpi + .kpi { padding-left: 20px; border-left: 1px solid var(--line); }
+  .label { font-size: 12px; color: var(--muted); }
+  .big { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); font-variant-numeric: tabular-nums; line-height: 1.1; letter-spacing: -0.01em; }
+  .kpi.main .big { color: var(--red-hi); }
+  .unit { font-family: var(--sans); font-size: 14px; color: var(--muted); margin-left: 4px; }
+  .sub { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  .section { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+  .head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; }
+  .head > div:first-child { display: flex; flex-direction: column; gap: 8px; }
+  .hint { font-size: 12px; color: var(--muted); }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .sw { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .c0 { background: var(--red-hi); } .c1 { background: var(--gray); } .c2 { background: var(--rose); }
+
+  .split { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+  .sido { padding: 20px 24px 4px 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .sido + .sido { padding-left: 24px; border-left: 1px solid var(--line); }
+  .sido .name { font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+  .bar { height: 2px; background: var(--line); margin-top: 6px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; transition: width .4s ease-out; }
+
+  .charts { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 56px; }
+  .chart { position: relative; min-height: 280px; width: 100%; }
+  .chart svg { display: block; width: 100%; overflow: visible; }
+  .chart .tick text, .chart .axl { fill: var(--muted); font-size: 12px; font-family: var(--sans); }
+  .chart .domain { stroke: none; }
+  .chart .tick line { stroke: var(--grid); stroke-dasharray: 2 3; }
+  .val { fill: var(--fg); font-size: 12px; font-variant-numeric: tabular-nums; font-family: var(--sans); }
+  .empty { font-size: 13px; color: var(--muted); padding: 16px 0; }
+  .tip { position: absolute; pointer-events: none; background: var(--tip); border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(0,0,0,.12); border-radius: 6px; padding: 10px 12px; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; z-index: 2; }
+  .tip strong { display: block; margin-bottom: 4px; font-weight: 500; }
+  .tip .m { color: var(--muted); }
+
+  select { font: inherit; font-size: 13px; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; }
+  .tablewrap { overflow-x: auto; border-top: 1px solid var(--fg); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+  th { text-align: left; font-weight: 400; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:hover { background: var(--panel); }
+  .r { text-align: right; }
+  td.nm { min-width: 200px; font-weight: 500; }
+  td.ad { color: var(--muted); min-width: 220px; font-size: 12px; }
+  .pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--panel); color: var(--muted); white-space: nowrap; }
+  .pill.rent { background: none; color: var(--gray); box-shadow: inset 0 0 0 1px var(--gray); }
+  .bigflag { color: var(--red-hi); font-weight: 500; }
+  footer { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 20px; }
+
+  @media (max-width: 900px) {
+    .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; }
+    .kpi, .kpi + .kpi { padding: 16px 12px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+    .kpi.main { grid-column: 1 / -1; }
+    .split { grid-template-columns: minmax(0, 1fr); border-top: 0; }
+    .sido, .sido + .sido { padding: 16px 0 8px; border-left: 0; border-top: 1px solid var(--line); }
+    .charts { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) { .pbtn, .bar > i { transition: none; } }
+</style>
+
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="mark"></div>
+    <div class="eyebrow">Honam · 2027 입주 예정</div>
+    <h1>'27년 호남권 신규아파트 입주현황</h1>
+    <p class="lede"><b class="hl" id="t-period">2027년 전체</b>에는 광주·전북·전남에 <b id="t-count">33</b>개 단지, <b id="t-units">17,063</b>세대가 입주할 예정입니다. 입주가 가장 몰리는 달은 <b id="t-peak">8월</b>로 <b id="t-peakunits">2,772</b>세대입니다.</p>
+    <p class="note">한국부동산원 입주예정물량(2025-12-31 기준, 30세대 이상 공동주택) 정리본. 실제 입주 시점과 세대수는 공사 일정에 따라 바뀔 수 있습니다.</p>
+  </header>
+
+  <nav class="period" aria-label="기간 선택">
+    <div class="prow" role="group" aria-label="분기">
+      <span class="plabel">분기</span>
+      <button type="button" class="pbtn" id="p-all" data-period="" aria-pressed="true">전체</button>
+      <button type="button" class="pbtn" id="p-q1" data-period="Q1" aria-pressed="false">1분기</button>
+      <button type="button" class="pbtn" id="p-q2" data-period="Q2" aria-pressed="false">2분기</button>
+      <button type="button" class="pbtn" id="p-q3" data-period="Q3" aria-pressed="false">3분기</button>
+      <button type="button" class="pbtn" id="p-q4" data-period="Q4" aria-pressed="false">4분기</button>
+    </div>
+    <div class="prow" role="group" aria-label="월" id="month-row">
+      <span class="plabel">월</span>
+    </div>
+  </nav>
+
+  <section class="kpis">
+    <div class="kpi main"><div class="label">입주 세대</div><div class="big"><span id="k-units">17,063</span><span class="unit">세대</span></div><div class="sub" id="k-period">2027년 1~12월</div></div>
+    <div class="kpi"><div class="label">입주 단지</div><div class="big"><span id="k-count">33</span><span class="unit">개</span></div><div class="sub">블록·주택유형별로 구분</div></div>
+    <div class="kpi"><div class="label">단지당 평균</div><div class="big"><span id="k-avg">517</span><span class="unit">세대</span></div><div class="sub">입주 세대 ÷ 단지 수</div></div>
+    <div class="kpi"><div class="label">1,000세대 이상 대단지</div><div class="big"><span id="k-big">2</span><span class="unit">개</span></div><div class="sub">한 단지 세대수 1,000 이상</div></div>
+    <div class="kpi"><div class="label">분양·조합 세대 비중</div><div class="big"><span id="k-sale">95.7</span><span class="unit">%</span></div><div class="sub">나머지는 민간·공공임대</div></div>
+  </section>
+
+  <section class="section">
+    <div class="head"><div><div class="eyebrow muted">By Province</div><h2>시도별 입주 세대</h2></div></div>
+    <div class="split" id="sido-split"></div>
+  </section>
+
+  <div class="charts">
+    <section class="section">
+      <div class="head">
+        <div><div class="eyebrow muted">Monthly</div><h2>입주월별 세대수</h2></div>
+        <div class="legend"><span><i class="sw c0"></i>광주</span><span><i class="sw c1"></i>전북</span><span><i class="sw c2"></i>전남</span></div>
+      </div>
+      <div class="chart" id="monthly"></div>
+      <div class="hint">막대를 누르면 그 달로 바뀝니다. 선택한 기간 밖의 달은 흐리게 보입니다.</div>
+    </section>
+    <section class="section">
+      <div class="head"><div><div class="eyebrow muted">By District</div><h2>시군구별 입주 세대</h2></div></div>
+      <div class="chart" id="sigungu"></div>
+    </section>
+  </div>
+
+  <section class="section">
+    <div class="head">
+      <div><div class="eyebrow muted">Complexes</div><h2>단지 리스트</h2></div>
+      <select id="sido-filter" aria-label="시도 선택">
+        <option value="">전체 시도</option><option value="광주">광주</option><option value="전북">전북</option><option value="전남">전남</option>
+      </select>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>입주월</th><th>시도</th><th>시군구</th><th>아파트명</th><th>판매유형</th><th class="r">세대수</th><th>주소</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>자료: 한국부동산원 입주예정물량(2025-12-31 기준) + 담당 확인사항 반영 리스트 · 범위: 광주·전북·전남 30세대 이상 공동주택</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+(function () {
+  const RAW = [
+    ['2027-01','전남','광양시','더샵 광양레이크센텀','분양·조합',925,'전라남도 광양시 마동 348-4'],
+    ['2027-01','전북','전주시','에코시티 더샵4차','분양·조합',576,'전북특별자치도 전주시 덕진구 송천동2가 1317-0'],
+    ['2027-01','광주','광산구','소촌어등더포레젠','분양·조합',439,'광주광역시 소촌동 산 76-1'],
+    ['2027-02','전북','전주시','전주대라수글로벌에듀(민간임대)','임대',315,'전북특별자치도 전주시 덕진구 금암동 523-104'],
+    ['2027-02','전남','담양군','담양삼만 통합공공임대 일자리연계형 지원주택','임대',94,'전라남도 담양군 담양읍 삼만리 1241 외 5'],
+    ['2027-03','전남','여수시','e편한세상여수글렌츠','분양·조합',1365,'전라남도 여수시 신기동 3'],
+    ['2027-03','전북','김제시','김제 검산 예다음','분양·조합',648,'전북특별자치도 김제시 검산동 510-7'],
+    ['2027-03','광주','북구','본촌동코오롱하늘채','분양·조합',428,'광주광역시 북구 본촌동 180'],
+    ['2027-04','전남','여수시','힐스테이트 죽림더프라우드(A2BL) / 국민주택','분양·조합',802,'전라남도 여수시 소라면 죽림1지구 A2블록'],
+    ['2027-04','전남','여수시','힐스테이트 죽림더프라우드(A4BL)','분양·조합',341,'전라남도 여수시 소라면 죽림1지구 A4블록'],
+    ['2027-04','전남','여수시','힐스테이트 죽림더프라우드(A2BL)/민영주택','분양·조합',129,'전라남도 여수시 소라면 죽림1지구 A2블록'],
+    ['2027-04','전남','목포시','하당 르파르크시그니처','분양·조합',70,'전라남도 목포시 석현동 1175-11'],
+    ['2027-05','광주','광산구','봉산공원 첨단 제일풍경채','분양·조합',948,'광주광역시 광산구 산월동 산 22-0'],
+    ['2027-05','전남','나주시','나주영산 윤슬의아침 더정원','분양·조합',311,'전라남도 나주시 이창동 714'],
+    ['2027-05','전북','전주시','전주 에코시티 더 클래스','분양·조합',48,'전북특별자치도 전주시 덕진구 호성동2가 801-31'],
+    ['2027-06','광주','북구','운암산공원 우미린 리버포레','분양·조합',734,'광주광역시 북구 동림동 산 90-1'],
+    ['2027-07','전남','순천시','순천그랜드파크자이','분양·조합',997,'전라남도 순천시 풍덕동 327-3'],
+    ['2027-07','전남','해남군','파크레스트 해남 민영주택','분양·조합',294,'전라남도 해남군 해남읍 구교리 49-0'],
+    ['2027-07','전북','김제시','김제하동어반트리2차(민간임대)','임대',122,'전북특별자치도 김제시 하동 산 37-10'],
+    ['2027-08','광주','서구','중앙공원 롯데캐슬 시그니처 1BL','분양·조합',929,'광주광역시 서구 풍암동 560-9'],
+    ['2027-08','광주','서구','중앙공원 롯데캐슬 시그니처 2-2BL','분양·조합',928,'광주광역시 서구 풍암동 569-0'],
+    ['2027-08','광주','서구','중앙공원 롯데캐슬 시그니처 2-1BL','분양·조합',915,'광주광역시 서구 금호동 80-0'],
+    ['2027-09','전남','순천시','순천 지에이그린웰 하이드원','분양·조합',475,'전라남도 순천시 덕암동 45-0'],
+    ['2027-09','전북','전주시','전주 인후동 마루힐 센트럴','분양·조합',199,'전북특별자치도 전주시 덕진구 인후동2가 1560-0'],
+    ['2027-10','전남','순천시','순천 한양립스 파크포레','분양·조합',463,'전라남도 순천시 용당동 288-1'],
+    ['2027-10','광주','남구','진월 더리브 라포레','분양·조합',300,'광주광역시 남구 진월동 산 3-0'],
+    ['2027-11','광주','광산구','한양립스 에듀포레','분양·조합',470,'광주광역시 광산구 하산동 122-0'],
+    ['2027-11','전북','순창군','대상 웰라움 순창','분양·조합',264,'전북특별자치도 순창군 순창읍 순화리 951'],
+    ['2027-11','전북','김제시','남전주IC국제미소래1차(민간임대)','임대',198,'전북특별자치도 김제시 금구면 금구리 358-37'],
+    ['2027-12','광주','남구','광주 송암공원 중흥 S-클래스 SK VIEW','분양·조합',1575,'광주광역시 남구 송하동 177-5'],
+    ['2027-12','광주','서구','광주화정아이파크(1단지)','분양·조합',389,'광주광역시 서구 화정동 23-27'],
+    ['2027-12','광주','서구','광주화정아이파크(2단지)','분양·조합',316,'광주광역시 서구 화정동 23-26'],
+    ['2027-12','광주','남구','봉선동 르오네뜨 2차','분양·조합',56,'광주광역시 남구 봉선동 161-0']
+  ];
+  const DATA = RAW.map(([month, sido, sigungu, name, type, units, address]) => ({ month, sido, sigungu, name, type, units, address }));
+  const SIDO = ['광주', '전북', '전남'];
+  const KEYS = ['gwangju', 'jeonbuk', 'jeonnam'];
+  const COLORS = ['var(--red-hi)', 'var(--gray)', 'var(--rose)'];
+  const fmt = d3.format(',');
+  const mLabel = (m) => (+m.slice(5, 7)) + '월';
+  const state = { period: '', sido: '' };
+  try { const h = location.hash.slice(1); if (/^(q[1-4]|m(0[1-9]|1[0-2]))$/.test(h)) state.period = h[0] === 'q' ? 'Q' + h[1] : '2027-' + h.slice(1); } catch (e) {}
+
+  const inPeriod = (m, p) => !p || (p[0] === 'Q' ? Math.ceil(+m.slice(5, 7) / 3) === +p[1] : m === p);
+  const pLabel = (p) => !p ? '2027년 전체' : p[0] === 'Q' ? `2027년 ${p[1]}분기` : `2027년 ${mLabel(p)}`;
+  const pRange = (p) => !p ? '2027년 1~12월' : p[0] === 'Q' ? `2027년 ${p[1] * 3 - 2}~${p[1] * 3}월` : `2027년 ${mLabel(p)}`;
+  const $ = (id) => document.getElementById(id);
+
+  // month buttons
+  const monthRow = $('month-row');
+  for (let i = 1; i <= 12; i++) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'pbtn'; b.id = 'p-m' + String(i).padStart(2, '0');
+    b.dataset.period = '2027-' + String(i).padStart(2, '0'); b.textContent = i + '월';
+    monthRow.appendChild(b);
+  }
+  function setPeriod(p) {
+    state.period = p;
+    try { history.replaceState(null, '', p ? '#' + (p[0] === 'Q' ? 'q' + p[1] : 'm' + p.slice(5)) : location.pathname + location.search); } catch (e) {}
+    render();
+  }
+  document.querySelectorAll('.pbtn').forEach((b) => b.addEventListener('click', () => setPeriod(b.dataset.period || '')));
+  $('sido-filter').addEventListener('change', (e) => { state.sido = e.target.value; drawTable(); });
+
+  // province cards
+  const split = $('sido-split');
+  [['광주', 0], ['전남', 2], ['전북', 1]].forEach(([s, i]) => {
+    const d = document.createElement('div'); d.className = 'sido';
+    d.innerHTML = `<div class="name"><i class="sw c${i}"></i>${s}</div><div class="big"><span data-u></span><span class="unit">세대</span></div><div class="sub"><span data-c></span>개 단지 · 비중 <span data-s></span>%</div><div class="bar"><i data-b style="background:${COLORS[i]}"></i></div>`;
+    d.dataset.sido = s; split.appendChild(d);
+  });
+
+  function rowsFor(p) { return DATA.filter((r) => inPeriod(r.month, p)); }
+
+  function render() {
+    const p = state.period;
+    document.querySelectorAll('.pbtn').forEach((b) => b.setAttribute('aria-pressed', String((b.dataset.period || '') === p)));
+    const rows = rowsFor(p);
+    const units = d3.sum(rows, (r) => r.units), count = rows.length;
+    const sale = d3.sum(rows.filter((r) => r.type === '분양·조합'), (r) => r.units);
+    const peak = d3.rollups(rows, (v) => d3.sum(v, (r) => r.units), (r) => r.month).sort((a, b) => b[1] - a[1])[0];
+    $('t-period').textContent = pLabel(p);
+    $('t-count').textContent = fmt(count);
+    $('t-units').textContent = fmt(units);
+    $('t-peak').textContent = peak ? mLabel(peak[0]) : '—';
+    $('t-peakunits').textContent = peak ? fmt(peak[1]) : '0';
+    $('k-units').textContent = fmt(units);
+    $('k-period').textContent = pRange(p);
+    $('k-count').textContent = fmt(count);
+    $('k-avg').textContent = count ? fmt(Math.round(units / count)) : '0';
+    $('k-big').textContent = rows.filter((r) => r.units >= 1000).length;
+    $('k-sale').textContent = units ? d3.format('.1f')(sale / units * 100) : '0.0';
+    split.querySelectorAll('.sido').forEach((el) => {
+      const rs = rows.filter((r) => r.sido === el.dataset.sido);
+      const u = d3.sum(rs, (r) => r.units), sh = units ? u / units * 100 : 0;
+      el.querySelector('[data-u]').textContent = fmt(u);
+      el.querySelector('[data-c]').textContent = rs.length;
+      el.querySelector('[data-s]').textContent = d3.format('.1f')(sh);
+      el.querySelector('[data-b]').style.width = sh + '%';
+    });
+    drawMonthly(); drawSigungu(); drawTable();
+  }
+
+  function tipBox(el) { const t = document.createElement('div'); t.className = 'tip'; t.hidden = true; el.appendChild(t); return t; }
+  function placeTip(el, tip, x, y) {
+    const w = tip.offsetWidth; tip.style.left = Math.max(0, Math.min(el.clientWidth - w, x - w / 2)) + 'px';
+    tip.style.top = Math.max(0, y - tip.offsetHeight - 8) + 'px';
+  }
+  function tipLines(tip, title, lines) {
+    tip.replaceChildren();
+    const h = document.createElement('strong'); h.textContent = title; tip.appendChild(h);
+    lines.forEach((t) => { const d = document.createElement('div'); d.className = 'm'; d.textContent = t; tip.appendChild(d); });
+    tip.hidden = false;
+  }
+
+  function drawMonthly() {
+    const el = $('monthly'); el.replaceChildren();
+    const p = state.period;
+    const data = d3.range(1, 13).map((i) => {
+      const month = '2027-' + String(i).padStart(2, '0');
+      const rs = DATA.filter((r) => r.month === month);
+      const o = { month, label: i + '월', count: rs.length, total: d3.sum(rs, (r) => r.units) };
+      SIDO.forEach((s, k) => { o[KEYS[k]] = d3.sum(rs.filter((r) => r.sido === s), (r) => r.units); });
+      return o;
+    });
+    const W = el.clientWidth || 600, H = 280, narrow = W < 560;
+    const m = { t: 22, r: 4, b: 26, l: 46 };
+    const x = d3.scaleBand().domain(data.map((r) => r.label)).range([m.l, W - m.r]).padding(narrow ? 0.18 : 0.3);
+    const y = d3.scaleLinear().domain([0, d3.max(data, (r) => r.total)]).nice().range([H - m.b, m.t]);
+    const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H)
+      .attr('role', 'img').attr('aria-label', `2027년 입주월별 시도별 입주 세대수, ${pLabel(p)} 강조`);
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.l - m.r)).tickFormat(fmt)).call((g) => g.select('.domain').remove());
+    svg.append('g').selectAll('g').data(d3.stack().keys(KEYS)(data)).join('g').style('fill', (s, i) => COLORS[i])
+      .selectAll('rect').data((s) => s).join('rect')
+      .attr('x', (pt) => x(pt.data.label)).attr('width', x.bandwidth())
+      .attr('y', (pt) => y(pt[1])).attr('height', (pt) => Math.max(0, y(pt[0]) - y(pt[1])))
+      .style('opacity', (pt) => inPeriod(pt.data.month, p) ? 1 : 0.2);
+    const short = (v) => v >= 1000 ? (Math.round(v / 100) / 10) + 'k' : String(v);
+    svg.append('g').selectAll('text').data(data).join('text').attr('class', 'val').attr('text-anchor', 'middle')
+      .attr('x', (r) => x(r.label) + x.bandwidth() / 2).attr('y', (r) => y(r.total) - 6)
+      .style('font-size', narrow ? '10px' : null).style('opacity', (r) => inPeriod(r.month, p) ? 1 : 0.45)
+      .text((r) => narrow ? short(r.total) : fmt(r.total));
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickSize(0).tickPadding(8)).call((g) => g.select('.domain').remove());
+    const tip = tipBox(el);
+    svg.append('g').selectAll('rect').data(data).join('rect')
+      .attr('x', (r) => x(r.label) - x.step() * x.paddingInner() / 2).attr('width', x.step())
+      .attr('y', m.t).attr('height', H - m.t - m.b).style('fill', 'transparent').style('cursor', 'pointer')
+      .on('click', (ev, r) => setPeriod(state.period === r.month ? '' : r.month))
+      .on('pointerenter pointermove', (ev, r) => {
+        tipLines(tip, `2027년 ${r.label} · ${fmt(r.total)}세대 (${r.count}개 단지)`, SIDO.map((s, k) => r[KEYS[k]] ? `${s} ${fmt(r[KEYS[k]])}세대` : null).filter(Boolean));
+        placeTip(el, tip, x(r.label) + x.bandwidth() / 2, y(r.total));
+      })
+      .on('pointerleave', () => { tip.hidden = true; });
+  }
+
+  function drawSigungu() {
+    const el = $('sigungu'); el.replaceChildren();
+    const data = d3.rollups(rowsFor(state.period), (v) => ({ count: v.length, units: d3.sum(v, (r) => r.units) }), (r) => r.sido + ' ' + r.sigungu)
+      .map(([area, v]) => ({ area, sido: area.split(' ')[0], ...v })).sort((a, b) => b.units - a.units);
+    if (!data.length) { const e = document.createElement('div'); e.className = 'empty'; e.textContent = `${pLabel(state.period)}에는 입주 예정 단지가 없습니다.`; el.appendChild(e); return; }
+    const W = el.clientWidth || 400, row = 26, H = data.length * row + 8;
+    const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H)
+      .attr('role', 'img').attr('aria-label', `${pLabel(state.period)} 시군구별 입주 세대수`);
+    const labels = svg.append('g').selectAll('text').data(data).join('text').attr('class', 'axl').attr('text-anchor', 'end').attr('dy', '0.35em').text((r) => r.area);
+    let lw = 0; labels.each(function () { lw = Math.max(lw, this.getComputedTextLength()); });
+    const ml = Math.ceil(lw) + 10, mr = 56;
+    const x = d3.scaleLinear().domain([0, d3.max(data, (r) => r.units)]).range([ml, Math.max(ml + 40, W - mr)]);
+    const yy = (i) => i * row + row / 2 + 4;
+    labels.attr('x', ml - 8).attr('y', (r, i) => yy(i));
+    svg.append('g').selectAll('rect').data(data).join('rect').attr('x', ml).attr('y', (r, i) => yy(i) - 7).attr('height', 14).attr('rx', 2)
+      .attr('width', (r) => Math.max(1, x(r.units) - ml)).style('fill', (r) => COLORS[SIDO.indexOf(r.sido)]);
+    svg.append('g').selectAll('text').data(data).join('text').attr('class', 'val').attr('dy', '0.35em')
+      .attr('x', (r) => x(r.units) + 6).attr('y', (r, i) => yy(i)).text((r) => fmt(r.units));
+    const tip = tipBox(el);
+    svg.append('g').selectAll('rect').data(data).join('rect').attr('x', 0).attr('width', W).attr('y', (r, i) => i * row + 4).attr('height', row).style('fill', 'transparent')
+      .on('pointerenter pointermove', (ev, r) => { tipLines(tip, r.area, [`${fmt(r.units)}세대 · ${r.count}개 단지`]); placeTip(el, tip, Math.min(x(r.units), W - 40), yy(data.indexOf(r)) - 8); })
+      .on('pointerleave', () => { tip.hidden = true; });
+  }
+
+  function drawTable() {
+    const tb = $('rows'); tb.replaceChildren();
+    const rows = rowsFor(state.period).filter((r) => !state.sido || r.sido === state.sido);
+    if (!rows.length) { const tr = tb.insertRow(); const td = tr.insertCell(); td.colSpan = 7; td.textContent = '선택한 기간과 시도에 해당하는 단지가 없습니다.'; return; }
+    rows.forEach((r) => {
+      const tr = tb.insertRow();
+      const cell = (t, c) => { const td = tr.insertCell(); if (c) td.className = c; td.textContent = t; return td; };
+      cell(mLabel(r.month)); cell(r.sido); cell(r.sigungu); cell(r.name, 'nm');
+      const t = cell(''); const s = document.createElement('span'); s.className = 'pill' + (r.type === '임대' ? ' rent' : ''); s.textContent = r.type; t.appendChild(s);
+      const u = cell(fmt(r.units), 'r'); if (r.units >= 1000) u.classList.add('bigflag');
+      cell(r.address, 'ad');
+    });
+  }
+
+  render();
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { drawMonthly(); drawSigungu(); }, 120); });
+})();
+</script>
+
+</body>
+</html>
