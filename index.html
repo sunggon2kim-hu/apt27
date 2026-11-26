@@ -285,6 +285,12 @@
     .pill { font-size: 11px; padding: 1px 7px; }
     footer { font-size: 11px; }
   }
+
+  /* Phone: main information only — footnotes, sources and secondary captions are left out */
+  @media (max-width: 640px) {
+    .note, footer, .hint, .sub, .pcompare, .eyebrow.muted, .hero .eyebrow, .mark { display: none !important; }
+    .kpis { margin-top: -16px; }
+  }
   @media (prefers-reduced-motion: reduce) { .pbtn, .pair .track i { transition: none; } }
 </style>
 </head>
